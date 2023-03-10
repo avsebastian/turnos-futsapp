@@ -1,4 +1,4 @@
-import Role from "../models/role.js";
+const Role = require("../models/roles.js");
 
 const getAllRoles = async () => {
   const roles = await Role.findAll();
@@ -58,7 +58,7 @@ const updateRole = async (roleData, roleId) => {
 };
 
 
-export default {
+module.exports = {
   getAllRoles,
   createRole,
   deleteRole,

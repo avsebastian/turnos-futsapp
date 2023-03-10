@@ -1,7 +1,6 @@
-import Role from "../models/role.js";
-import Booking from "../models/booking.js";
-import User from "../models/user.js";
-import roleRepository from "./roles.js";
+const Role = require("../models/roles");
+const User = require("../models/user");
+const roleRepository = require("./roles");
 
 const getAllUsers = async () => {
   const users = await User.findAll();
@@ -60,28 +59,10 @@ const updateUser = async (userData, userId) => {
   }
 };
 
-const createUserBooking = async (bookingData, userId) => {
-  const bookings = await Booking.create({ ...bookingData, UserId: userId });
-
-  return bookings;
-};
-
-const getAllUserBookingsById = async (userId) => {
-  const user = await User.findByPk(userId, {
-    include: {
-      model: Booking,
-    }
-  });
-
-  return user;
-}
-
-export default {
+module.exports = {
   getAllUsers,
   createUser,
   deleteUser,
   updateUser,
   getUserById,
-  createUserBooking,
-  getAllUserBookingsById
 };

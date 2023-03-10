@@ -1,15 +1,23 @@
-import express from "express"
-import config from "./config.js";
-import models from "./models/index.js";
-import apiRoutes from "./routes/index.js";
-
+const express = require("express");
+const apiRoutes = require("./routes");
+const db = require("./models");
 const app = express();
+const config = require("./config.js")
 
-app.use(express.json());
+app.use(express.json()); //aceptar recibir y enviar json en nuestra api
 
 app.use("/api", apiRoutes);
 
-
-models.sync({ force: true }).then((sequelize) => {
-  app.listen(config.SERVER_PORT);
+app.get("/api", (req, res) => {
+	res.send("Bienvenido, Registrate!!");
 })
+
+db.sync().then(() => {
+	console.log("Conectado a la base de datos")
+}).catch(() => {
+	console.log("Hubo un error al conectarse a la base de datos")
+})
+
+app.listen(config.SERVER_PORT, "localhost", () => {
+	console.log("Servidor funcionando");
+});

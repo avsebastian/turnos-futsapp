@@ -1,7 +1,6 @@
-import { DataTypes } from "sequelize";
-import db from "./index.js";
-import Role from "./role.js";
-import Booking from "./booking.js";
+const { DataTypes } = require('sequelize');
+const db = require('./index');
+const Role = require("./roles.js");
 
 const User = db.define("User", {
   id: {
@@ -32,9 +31,7 @@ const User = db.define("User", {
   status: DataTypes.ENUM("habilitado", "bloqueado"),
 });
 
-User.hasMany(Booking);
-Booking.belongsTo(User);
 User.belongsToMany(Role, { through: "RolesUsers" });
 Role.belongsToMany(User, { through: "RolesUsers" });
 
-export default User;
+module.exports = User;

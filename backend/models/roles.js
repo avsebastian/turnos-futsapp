@@ -1,7 +1,7 @@
-import { DataTypes } from "sequelize";
-import db from "./index.js";
+const { DataTypes } = require('sequelize');
+const db = require('./index');
 
-const Date = db.define("Date", {
+const Roles = db.define("Roles", {
   id: {
     primaryKey: true,
     type: DataTypes.INTEGER,
@@ -14,4 +14,4 @@ const Date = db.define("Date", {
   descripcion: DataTypes.STRING,
 });
 
-export default Date;
+module.exports = Roles;
