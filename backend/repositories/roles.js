@@ -1,57 +1,57 @@
-const Role = require("../models/roles.js");
+const Rol = require("../models/roles.js");
 
 const getAllRoles = async () => {
-  const roles = await Role.findAll();
+  const roles = await Rol.findAll();
 
   return roles;
 };
 
-const getRoleById = async (roleId) => {
-  const role = await Role.findByPk(roleId);
+const getRolById = async (rolId) => {
+  const rol = await Rol.findByPk(rolId);
 
-  return role;
+  return rol;
 };
 
 /**
- * Crea role
+ * Crea rol
  * @param {*} userData 
  * @returns 
  */
-const createRole = async (userData) => {
+const createRol = async (rolData) => {
   try {
-    const role = await Role.create(userData);
+    const rol = await Rol.create(rolData);
 
-    return role;
+    return rol;
   } catch (error) {
     return error;
   }
 };
 
-const deleteRole = async (roleId) => {
+const deleteRol = async (rolId) => {
   try {
-    const role = await Role.destroy({
+    const rol = await Rol.destroy({
       where: {
-        id: roleId,
+        id: rolId,
       },
     });
 
-    return role;
+    return rol;
   } catch (error) {
     return error;
   }
 };
 
-const updateRole = async (roleData, roleId) => {
+const updateRol = async (rolData, rolId) => {
   try {
-    await Role.update(roleData, {
+    await Rol.update(rolData, {
       where: {
-        id: roleId,
+        id: rolId,
       },
     });
 
-    const role = await Role.findByPk(roleId);
+    const rol = await Role.findByPk(rolId);
 
-    return role;
+    return rol;
   } catch (error) {
     return error;
   }
@@ -60,8 +60,8 @@ const updateRole = async (roleData, roleId) => {
 
 module.exports = {
   getAllRoles,
-  createRole,
-  deleteRole,
-  updateRole,
-  getRoleById,
+  createRol,
+  deleteRol,
+  updateRol,
+  getRolById,
 };
