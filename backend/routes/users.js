@@ -11,7 +11,7 @@ const userRoutes = express.Router();
 
 userRoutes.get("/", getAllUsers);
 userRoutes.get("/:userId", getUserById);
-userRoutes.post("/", createUser);
+userRoutes.post("/create", createUser);
 userRoutes.put("/:userId", updateUser);
 userRoutes.delete("/:userId", deleteUser);
 /* Muevo al modulo controllers/users
