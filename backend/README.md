@@ -1,10 +1,32 @@
 # api_rest_sequelize_MySQL
 # actualizacion repo backend
 api rest express sequelize MySQL <br>
-/api/ >ruta principal <br>
-/api/users/create > crear registro de usuario <br>
-/api/users > ver todos los usuarios <br>
-/api/users/id > mostrar registro por id de usuario<br>
-/api/roles/create > crear rol <br>
-/api/roles > ver todos los roles <br>
-/api/roles/id > mostrar registro por id del rol<br>
+
+/api/ > ruta principal <br>
+users (usuarios)
+/api/users/create > POST > crear registro de usuario <br>
+/api/users > GET > ver todos los usuarios <br>
+/api/users/id > GET > mostrar registro por id de usuario<br>
+/api/users/id > DEL > eliminar registro por id del user<br>
+/api/userId/booking > POST > crear reserva por id de usuario<br>
+/api/userId/bookings/ > GET > mostrar todas las reservas por id de usuario<br>
+roles (roles)
+/api/roles/create > POST >crear rol <br>
+/api/roles > GET > ver todos los roles <br>
+/api/roles/id > GET > mostrar registro por id del rol<br>
+/api/roles/id > DEL > eliminar registro por id del rol<br>
+images (imagenes)
+/api/images/create > POST > subir url imagen <br>
+/api/images > GET > ver todas las url de imagenes <br>
+/api/images/id > GET > mostrar url por id de imagen<br>
+/api/images/id > DEL > eliminar url por id de imagen<br>
+persons (personas)
+/api/persons/create > POST > crear persona <br>
+/api/persons > GET > ver todos los registros de personas <br>
+/api/persons/id > GET > mostrar persona por id<br>
+/api/persons/id > DEL > eliminar persona por id<br>
+socerfields (campo de futbol)
+/api/persons/create > POST > crear cancha de futbol <br>
+/api/persons > GET > ver todas las canchas <br>
+/api/persons/id > GET > mostrar cancha por id<br>
+/api/persons/id > DEL > eliminar cancha por id<br>
