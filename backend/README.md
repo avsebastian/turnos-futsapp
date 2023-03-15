@@ -26,7 +26,7 @@ persons (personas)
 /api/persons/id > GET > mostrar persona por id<br>
 /api/persons/id > DEL > eliminar persona por id<br>
 socerfields (campo de futbol)
-/api/persons/create > POST > crear cancha de futbol <br>
-/api/persons > GET > ver todas las canchas <br>
-/api/persons/id > GET > mostrar cancha por id<br>
-/api/persons/id > DEL > eliminar cancha por id<br>
+/api/socerfields/create > POST > crear cancha de futbol <br>
+/api/socerfields > GET > ver todas las canchas <br>
+/api/socerfields/id > GET > mostrar cancha por id<br>
+/api/socerfields/id > DEL > eliminar cancha por id<br>
