@@ -1,4 +1,4 @@
-# api_rest_sequelize_MySQL
+# api_rest Nodejs express_sequelize_MySQL
 # actualizacion repo backend
 api rest express sequelize MySQL <br>
 
