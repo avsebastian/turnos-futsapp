@@ -43,10 +43,32 @@ const updateUser = async (req, res) => {
   }
 }
 
+const createUserBooking = async (req, res) => {
+  try {
+    const bookings = await userRepository.createUserBooking(req.body, req.params.userId)
+
+    res.json({ bookings })
+  } catch (error) {
+    res.status(500).json({ error });
+  }
+}
+
+const getAllBookingsByUserId = async (req, res) => {
+  try {
+    const bookings = await userRepository.getAllBookingsByUserId(req.params.userId)
+
+    res.json({ bookings })
+  } catch (error) {
+    res.status(500).json({ error });
+  }
+}
+
 module.exports = {
   getAllUsers,
   createUser,
   deleteUser,
   updateUser,
   getUserById,
+  createUserBooking,
+  getAllBookingsByUserId
 }

@@ -1,0 +1,52 @@
+const soccerfieldRepository = require ("../repositories/soccerfields.js");
+
+
+const getAllSoccerFields = async (req, res) => {
+  const soccerfields = await soccerfieldRepository.getAllSoccerFields();
+
+  res.status(200).json({ soccerfields });
+};
+
+const getSoccerFieldById = async (req, res) => {
+  const soccerfield = await soccerfieldRepository.getSoccerFieldById(req.params.soccerfieldId);
+
+  res.json({ soccerfield });
+}
+
+const createSoccerField = async (req, res) => {
+  try {
+    const soccerfield = await soccerfieldRepository.createSoccerField(req.body);
+
+    res.json({ soccerfield });
+  } catch (error) {
+    res.status(500).json({ error })
+  }
+}
+
+const deleteSoccerField = async (req, res) => {
+  try {
+    const soccerfield = soccerfieldRepository.deleteSoccerField(req.params.soccerfieldId)
+
+    res.json({ soccerfield });
+  } catch (error) {
+    res.status(500).json({ error })
+  }
+}
+
+const updateSoccerField = async (req, res) => {
+  try {
+    const soccerfield = await soccerfieldRepository.updateSoccerField(req.body, req.params.soccerfieldId);
+
+    res.json({ soccerfield })
+  } catch (error) {
+    res.status(500).json({ error });
+  }
+}
+
+module.exports = {
+  getAllSoccerFields,
+  createSoccerField,
+  deleteSoccerField,
+  updateSoccerField,
+  getSoccerFieldById,
+}

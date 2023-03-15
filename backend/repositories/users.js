@@ -1,4 +1,5 @@
 const Role = require("../models/roles");
+const Booking = require("../models/booking.js");
 const User = require("../models/user");
 const roleRepository = require("./roles");
 
@@ -59,10 +60,27 @@ const updateUser = async (userData, userId) => {
   }
 };
 
+const createUserBooking = async (bookingData, userId) => {
+  const bookings = await Booking.create({ ...bookingData, UserId: userId });
+
+  return bookings;
+};
+
+const getAllUserBookingById = async (userId) => {
+  const user = await User.findByPk(userId, {
+    include: {
+      model: Booking,
+    }
+  });
+
+  return user;
+};
 module.exports = {
   getAllUsers,
   createUser,
   deleteUser,
   updateUser,
   getUserById,
+  createUserBooking,
+  getAllUserBookingById
 };
