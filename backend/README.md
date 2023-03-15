@@ -30,3 +30,8 @@ soccerfields (campo de futbol)
 /api/soccerfields > GET > ver todas las canchas <br>
 /api/soccerfields/id > GET > mostrar cancha por id<br>
 /api/soccerfields/id > DEL > eliminar cancha por id<br>
+bookings (reservas)
+/api/bookings/create > POST > crear reserva <br>
+/api/bookings > GET > ver todas las reservas <br>
+/api/bookings/id > GET > mostrar reservas por id<br>
+/api/bookings/id > DEL > eliminar reserva por id<br>
