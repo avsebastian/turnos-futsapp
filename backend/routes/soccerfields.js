@@ -11,7 +11,7 @@ const soccerfieldRoutes = express.Router();
 
 soccerfieldRoutes.get("/", getAllSoccerFields);
 soccerfieldRoutes.get("/:soccerfieldId", getSoccerFieldById);
-soccerfieldRoutes.post("/", createSoccerField);
+soccerfieldRoutes.post("/create/", createSoccerField);
 soccerfieldRoutes.put("/:soccerfieldId", updateSoccerField);
 soccerfieldRoutes.delete("/:soccerfieldId", deleteSoccerField);
 

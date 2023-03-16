@@ -11,7 +11,7 @@ const rolRoutes = express.Router();
 
 rolRoutes.get("/", getAllRoles);
 rolRoutes.get("/:rolId", getRolById);
-rolRoutes.post("/", createRol);
+rolRoutes.post("/create/", createRol);
 rolRoutes.put("/:rolId", updateRol);
 rolRoutes.delete("/:rolId", deleteRol);
 
