@@ -5,7 +5,7 @@ const {
 	getAllImages,
 	getImageById,
 	updateImage,
-  } = require("../controllers/Images.js");
+  } = require("../controllers/images.js");
 
 const imageRoutes = express.Router();
 
