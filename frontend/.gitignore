@@ -1,5 +1,14 @@
+<<<<<<< HEAD
 .env
 .node_modules
+=======
+<<<<<<< HEAD
+.node_module
+=======
+.env
+.node_modules
+>>>>>>> sergio-dev
+>>>>>>> develop
 # Logs
 logs
 *.log
