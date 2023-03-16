@@ -11,7 +11,7 @@ const bookingRoutes = express.Router();
 
 bookingRoutes.get("/", getAllBookings);
 bookingRoutes.get("/:bookingId", getBookingById);
-bookingRoutes.post("/", createBooking);
+bookingRoutes.post("/create/", createBooking);
 bookingRoutes.put("/:bookingId", updateBooking);
 bookingRoutes.delete("/:bookingId", deleteBooking);
 

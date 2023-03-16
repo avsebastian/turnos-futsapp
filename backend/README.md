@@ -4,11 +4,11 @@ api rest express sequelize MySQL <br>
 
 /api/ > ruta principal <br>
 users (usuarios)
-/api/users/create > POST > crear registro de usuario <br>
+/api/users/create/ > POST > crear registro de usuario <br>
 /api/users > GET > ver todos los usuarios <br>
 /api/users/id > GET > mostrar registro por id de usuario<br>
 /api/users/id > DEL > eliminar registro por id del user<br>
-/api/userId/booking > POST > crear reserva por id de usuario<br>
+/api/userId/bookings/create/ > POST > crear reserva por id de usuario<br>
 /api/userId/bookings/ > GET > mostrar todas las reservas por id de usuario<br>
 roles (roles)
 /api/roles/create > POST >crear rol <br>
@@ -20,11 +20,11 @@ images (imagenes)
 /api/images > GET > ver todas las url de imagenes <br>
 /api/images/id > GET > mostrar url por id de imagen<br>
 /api/images/id > DEL > eliminar url por id de imagen<br>
-persons (personas)
-/api/persons/create > POST > crear persona <br>
-/api/persons > GET > ver todos los registros de personas <br>
-/api/persons/id > GET > mostrar persona por id<br>
-/api/persons/id > DEL > eliminar persona por id<br>
+peoples (personas)
+/api/peoples/create > POST > crear persona <br>
+/api/peoples > GET > ver todos los registros de personas <br>
+/api/peoples/id > GET > mostrar persona por id<br>
+/api/peoples/id > DEL > eliminar persona por id<br>
 soccerfields (campo de futbol)
 /api/soccerfields/create > POST > crear cancha de futbol <br>
 /api/soccerfields > GET > ver todas las canchas <br>

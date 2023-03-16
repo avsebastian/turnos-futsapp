@@ -11,7 +11,7 @@ const imageRoutes = express.Router();
 
 imageRoutes.get("/", getAllImages);
 imageRoutes.get("/:imageId", getImageById);
-imageRoutes.post("/", createImage);
+imageRoutes.post("/create/", createImage);
 imageRoutes.put("/:imageId", updateImage);
 imageRoutes.delete("/:imageId", deleteImage);
 

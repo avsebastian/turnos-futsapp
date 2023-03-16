@@ -19,7 +19,7 @@ const getBookingById = async (bookingId) => {
  */
 const createBooking = async (bookingData) => {
   try {
-    const booking = await Booking.create(BookingData);
+    const booking = await Booking.create(bookingData);
 
     return booking;
   } catch (error) {
