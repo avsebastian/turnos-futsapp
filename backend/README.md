@@ -8,8 +8,8 @@ users (usuarios)
 /api/users > GET > ver todos los usuarios <br>
 /api/users/id > GET > mostrar registro por id de usuario<br>
 /api/users/id > DEL > eliminar registro por id del user<br>
-/api/userId/bookings/create/ > POST > crear reserva por id de usuario<br>
-/api/userId/bookings/ > GET > mostrar todas las reservas por id de usuario<br>
+/api/users/userId/bookings/create/ > POST > crear reserva por id de usuario<br>
+/api/users/userId/bookings/ > GET > mostrar todas las reservas por id de usuario<br>
 roles (roles)
 /api/roles/create > POST >crear rol <br>
 /api/roles > GET > ver todos los roles <br>

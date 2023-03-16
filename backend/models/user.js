@@ -31,7 +31,7 @@ const User = db.define("User", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  lastName: DataTypes.STRING,
+  lastname: DataTypes.STRING,
   status: DataTypes.ENUM("habilitado", "bloqueado"),
 });
 
