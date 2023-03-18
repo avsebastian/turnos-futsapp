@@ -67,18 +67,26 @@ const AboutSection = () => {
             <div className="columnRight">
                 <div className="fila-1">
                     <div className="image">
-                        <img src={items[0].img} alt={items[0].key} />
+                        <div className="imageDimension">
+                            <Image src={items[0].img} alt={items[0].key} />
+                        </div>
                     </div>
                     <div className="image">
-                        <img src={items[1].img} alt={items[1].key} />
+                        <div className="imageDimension">
+                            <Image src={items[1].img} alt={items[1].key} />
+                        </div>
                     </div>
                 </div>
                 <div className="fila-2">
                 <div className="image">
-                        <img src={items[2].img} alt={items[2].key} />
+                        <div className="imageDimension">
+                            <Image src={items[2].img} alt={items[2].key} />
+                        </div>
                     </div>
                     <div className="image">
-                        <img src={items[3].img} alt={items[3].key} />
+                        <div className="imageDimension">
+                            <Image src={items[3].img} alt={items[3].key} />
+                        </div>
                     </div>
                 </div>
                 </div>
