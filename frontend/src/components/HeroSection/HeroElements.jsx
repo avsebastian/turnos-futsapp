@@ -4,12 +4,12 @@ import { ArrowRightOutlined, RightOutlined } from "@ant-design/icons";
  export const HeroContainer = styled.div`
     background: #0c0c0c;
     display: flex;
-    justify-center: center;
+    justify-content: center;
     align-items: center;
     padding: 0 30px;
-    height: 90vh;;
+    height: 90vh;
     position: relative;
-    z-index: 1
+    z-index: 1;
 
     :before {
         content: '';
@@ -39,10 +39,13 @@ import { ArrowRightOutlined, RightOutlined } from "@ant-design/icons";
     height: 100%;
     -o-object-fit: cover;
     object-fit: cover;
+    background: #232a34;
+    filter: brightness(50%);
  `
 
  export const HeroContent = styled.div`
     z-index: 3;
+    //background: rgba(0,0,0,0.5);
     max-width: 1200px;
     position: absolute;
     padding: 8px 24px;
