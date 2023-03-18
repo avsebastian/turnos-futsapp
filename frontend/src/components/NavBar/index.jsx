@@ -35,8 +35,8 @@ function NavBar() {
             </MobileIcon>
             <NavMenu>
                 <NavItem>
-                <NavLinks to="/about">
-                    About
+                <NavLinks to="/nosotros">
+                    Nosotros
                 </NavLinks>
                 </NavItem>
                 <NavItem>
