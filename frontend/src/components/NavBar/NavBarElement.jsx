@@ -3,6 +3,7 @@ import { NavLink as LinkR } from 'react-router-dom';
 import { Link as LinkS } from 'react-scroll';
 import { MenuOutlined } from "@ant-design/icons";
 
+
 export const Nav = styled.nav`
     background: #f2f4f5;
     heigth: 80px;
@@ -90,23 +91,5 @@ export const NavBtn = styled.nav`
 
     @media screen and (max-width: 768px){
         display: none;
-    }
-`
-
-export const NavBtnLink = styled(LinkR)`
-    border-radius: 50px;
-    background: #256ce1;
-    padding: 10px 22px;
-    color: #fff;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-    text-decoration: none;
-
-    &:hover {
-        transition: all 0.2s ease-in-out;
-        background: #1E237A;
-        color: #fff;
     }
 `

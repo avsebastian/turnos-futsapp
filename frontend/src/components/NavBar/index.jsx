@@ -10,9 +10,9 @@ import {
   NavItem,
   NavLinks,
   NavBtn,
-  NavBtnLink,
 } from "./NavBarElement";
 import Sidebar from "../Sidebar";
+import { Button } from '../ButtonElement'
 
 function NavBar() {
 
@@ -56,7 +56,7 @@ function NavBar() {
                 </NavItem>
             </NavMenu>
             <NavBtn>
-                <NavBtnLink to="/singin"> Iniciar Sesión </NavBtnLink>
+                <Button to="/singin"> Iniciar Sesión </Button>
             </NavBtn>
         </NavbarContainer>
       </Nav>

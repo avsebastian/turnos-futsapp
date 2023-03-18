@@ -14,6 +14,11 @@
   -webkit-text-size-adjust: 100%;
 }
 
+body {
+  margin: 0px;
+  padding: 0px;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
@@ -25,4 +30,8 @@
   button {
     background-color: #f9f9f9;
   }
+}
+
+body{
+  content-visibility: 100%;
 }
