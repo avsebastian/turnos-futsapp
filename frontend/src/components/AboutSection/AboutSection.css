@@ -31,6 +31,10 @@
     padding: 20px;
     margin: auto;
   }
+
+  .columnLeft p{
+    font-size: 16px;
+  }
   
   .columnRight {
     flex: 1;
@@ -58,5 +62,9 @@
   @media screen and (max-width: 768px) {
     .twoColumns {
       flex-direction: column;
+    }
+
+    .columnLeft p{
+      font-size: 18px;
     }
   }
