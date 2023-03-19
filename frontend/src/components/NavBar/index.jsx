@@ -15,7 +15,7 @@ import {
 import Sidebar from "../Sidebar";
 import { Button } from '../ButtonElement'
 
-function NavBar() {
+function NavBar({isLoginModalOpen, setIsLoginModalOpen}) {
 
   const [openMenu, setOpenMenu] = useState(false);
   const [scrollNav, setScrollNav] = useState(false);
@@ -36,7 +36,9 @@ function NavBar() {
     scroll.scrollToTop()
   }
 
-  
+  const handleModalLogin =() => {
+    setIsLoginModalOpen(true)
+  }
 
   return (
     <>
@@ -86,7 +88,7 @@ function NavBar() {
                 </NavItem>
             </NavMenu>
             <NavBtn>
-                <Button to="/singin"> Iniciar Sesión </Button>
+                <Button onClick={handleModalLogin}> Iniciar Sesión </Button>
             </NavBtn>
         </NavbarContainer>
       </Nav>

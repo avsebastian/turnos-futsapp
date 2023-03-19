@@ -1,6 +1,6 @@
 import React from "react";
-import { Row, Col, Image } from "antd";
-import { AboutContainer } from "./AboutElement";
+import { Image } from "antd";
+import { AboutContainer, NavLinks } from "./AboutElement";
 import "./AboutSection.css";
 
 import ComplejoUno from '../../assets/complejo-uno.jpg'
@@ -45,9 +45,13 @@ const AboutSection = () => {
                 <p>
                 {" "}
                 Te ofrecemos las mejores{" "}
-                <a style={{ fontWeight: "bold", cursor: "pointer"}}>
-                    canchas de futbol 5, 7 y 11
-                </a>{" "}
+                <NavLinks to="canchas" 
+                offset={-80}
+                smooth 
+                            duration={500}
+                            spy
+                            exact='true'>canchas de futbol 5, 7 y 11</NavLinks>
+                {" "}
                 con césped sintético de última generación,
                 además de exclusivos servicios adicionales para que tu experiencia
                 sea única.

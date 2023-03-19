@@ -1,7 +1,6 @@
 import styled from "styled-components"; 
 import { NavLink as LinkR } from 'react-router-dom';
 import { Link as LinkS } from 'react-scroll';
-import { MenuOutlined } from "@ant-design/icons";
 
 
 export const Nav = styled.nav`
