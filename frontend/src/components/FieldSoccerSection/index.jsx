@@ -35,10 +35,10 @@ const fieldSoccer = [
 
 const FieldSoccerSection = () => {
   return (
-    <div>
+    <>
       <Row className='title'>
         <div className="titleHolder">
-            <h2>Comple Deportivo</h2>
+            <h2>Canchas</h2>
         </div>
       </Row>
       <Row>
@@ -68,7 +68,7 @@ const FieldSoccerSection = () => {
         </Row>
         </Col>
       </Row>
-    </div>
+    </>
   )
 }
 

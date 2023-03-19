@@ -1,12 +1,12 @@
 import NavBar from "../components/NavBar";
-import SectionHero from '../components/HeroSection'
+import HeroSection from '../components/HeroSection'
 import AboutSection from "../components/AboutSection";
 
 export function Home() {
     return(
         <>
             <NavBar />
-            <SectionHero />
+            <HeroSection />
             <AboutSection />
         </>
     ) 

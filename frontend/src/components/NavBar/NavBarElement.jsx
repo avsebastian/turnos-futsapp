@@ -5,17 +5,18 @@ import { MenuOutlined } from "@ant-design/icons";
 
 
 export const Nav = styled.nav`
-    background: #f2f4f5;
+    //background: #f2f4f5;
+    background: ${({scrollNav}) => (scrollNav ? '#f2f4f5' :  'transparent')};
     heigth: 80px;
-//margin-top: -80px;
+    margin-top: -80px;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 1rem;
     position: sticky;
     top: 0;
-    //padding: 0.5rem calc((100vw - 1000px) / 2);
     z-index: 10;
+    transition: 0.2s ease-in-out;
 
     @media screen and (max-width: 960px) {
         transition: 0.8s all ease;
@@ -33,6 +34,7 @@ export const NavbarContainer = styled.div`
 `
 
 export const NavLogo = styled(LinkR)`
+    filter: drop-shadow( 0 0 10px white);
     @media screen and (max-width: 768px) {
         margin: auto;
     }
@@ -71,7 +73,8 @@ export const NavItem = styled.li `
 `
 
 export const NavLinks = styled(LinkS) `
-    color: #000;
+    color: #fff;
+    color: ${({scrollNav}) => (scrollNav ? '#000' :  '#fff')};
     display: flex;
     align-items: center;
     text-decoration: none;

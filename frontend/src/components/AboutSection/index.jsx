@@ -29,9 +29,7 @@ const items = [
 
 const AboutSection = () => {
   return (
-    <AboutContainer>
-      <div> 
-            
+    <AboutContainer id="nosotros"> 
       <div className="title">
         <div className="titleHolder">
           <h2>Complejo Deportivo</h2>
@@ -91,8 +89,6 @@ const AboutSection = () => {
                 </div>
                 </div>
         </div>
-      
-      </div>
     </AboutContainer>
   );
 };
