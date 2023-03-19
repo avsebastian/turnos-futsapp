@@ -3,7 +3,7 @@
     position: relative;
     padding: 0 0 20px;
     margin: 0 0 40px;
-  }
+}
   
   .titleHolder:after {
     transform: translateX(-50%);
@@ -23,7 +23,7 @@
 
   .twoColumns {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
   }
   
   .columnLeft {
@@ -65,6 +65,6 @@
     }
 
     .columnLeft p{
-      font-size: 18px;
+      font-size: 14px;
     }
   }

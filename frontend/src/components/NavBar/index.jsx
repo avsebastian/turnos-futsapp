@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { MenuOutlined } from "@ant-design/icons";
+import { animateScroll as scroll } from "react-scroll";
 import "./NavBar.css";
 import {
   Nav,
@@ -19,7 +20,11 @@ function NavBar() {
   const [openMenu, setOpenMenu] = useState(false);
   const [scrollNav, setScrollNav] = useState(false);
 
-  const changeNav = () =>{ 
+  useEffect(() =>{
+      window.addEventListener('scroll', changeNav)
+    }, [])
+
+  const changeNav = () => { 
     if(window.scrollY >= 80){
       setScrollNav(true)
     } else {
@@ -27,15 +32,17 @@ function NavBar() {
     }
   }
 
-  useEffect(() =>{
-    window.addEventListener('scroll', changeNav)
-  }, [])
+  const toggleHome = () => {
+    scroll.scrollToTop()
+  }
+
+  
 
   return (
     <>
       <Nav scrollNav={scrollNav}>
         <NavbarContainer>
-            <NavLogo to="/">
+            <NavLogo to="/" onClick={toggleHome}>
                 <img className="logo" src="/soccer-logo.png" alt="logo" />
             </NavLogo>
              <MobileIcon>
@@ -46,13 +53,25 @@ function NavBar() {
             </MobileIcon>
             <NavMenu>
                 <NavItem>
-                  <NavLinks to="nosotros" scrollNav={scrollNav}>
-                      Nosotros
+                  <NavLinks to="nosotros" 
+                            smooth 
+                            duration={500}
+                            spy
+                            exact='true'
+                            offset={-80} 
+                            scrollNav={scrollNav}>
+                            Nosotros
                   </NavLinks>
                 </NavItem>
                 <NavItem>
-                  <NavLinks to="/services" scrollNav={scrollNav}>
-                      Services
+                  <NavLinks to="canchas" 
+                            smooth 
+                            duration={500}
+                            spy
+                            exact='true'
+                            offset={-80}  
+                            scrollNav={scrollNav}>
+                            Canchas
                   </NavLinks>
                 </NavItem>
                 <NavItem>

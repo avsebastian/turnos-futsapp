@@ -26,9 +26,9 @@ const HeroSection = () => {
                         onMouseLeave={onHover}
                 >
                      <span>¡Vamos! </span> { hover ? <ArrowForwad style={{
-                        'vertical-align': 'middle'
+                        verticalAlign: 'middle'
                      }}/> : <ArrowRight style={{
-                        'vertical-align': 'middle'
+                        verticalAlign: 'middle'
                      }}/>} 
                         
                 </Button>

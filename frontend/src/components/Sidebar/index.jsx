@@ -12,8 +12,17 @@ const Sidebar = ({ openMenu, setOpenMenu }) => {
             style={{ background: '#f2f4f5'}}
     >
             <SidebarMenu>
-                <SidebarLink to="/about"> About </SidebarLink>
-                <SidebarLink to="/services"> Services </SidebarLink>
+                <SidebarLink to="nosotros"  
+                             smooth 
+                            duration={500}
+                            spy
+                            exact='true'
+                            offset={-80}> Nosotros </SidebarLink>
+                <SidebarLink to="canchas" smooth 
+                            duration={500}
+                            spy
+                            exact='true'
+                            offset={-80}> Canchas </SidebarLink>
                 <SidebarLink to="/contact-us"> Contact Us </SidebarLink>
                 <SidebarLink to="/profile"> Profile </SidebarLink>
             </SidebarMenu>
