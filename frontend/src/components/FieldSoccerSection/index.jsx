@@ -1,5 +1,5 @@
-import React from 'react'
-import { Row, Col, Card, Button} from 'antd'
+import React, {useState} from 'react'
+import { Row, Col, Card, Button, Drawer} from 'antd'
 import { FieldSoccerContainer } from './FieldSoccerSectionElement'
 const { Meta } = Card;
 
@@ -38,6 +38,19 @@ const fieldSoccer = [
   ]
 
 const FieldSoccerSection = () => {
+
+  const [open, setOpen] = useState(false);
+  const [selectedCard, setSelectedCard] = useState(null);
+
+  const showDrawer = (key) => {
+    setOpen(true);
+    setSelectedCard(key);
+  };
+  const onClose = () => {
+    setOpen(false);
+    setSelectedCard(null);
+  };
+
   return (
       <FieldSoccerContainer id="canchas">
         <div className="container-fluid">
@@ -52,6 +65,7 @@ const FieldSoccerSection = () => {
                   sm={{ span: 12 }} 
                   md={{ span: 8 }} 
                   key={item.key}>
+
                 <Card
                   hoverable
                   cover={ <img alt={item.title} 
@@ -60,14 +74,26 @@ const FieldSoccerSection = () => {
                               height={250} />
                         }
                 >
-                  <Meta title={item.title} />
+                  <Meta title={item.title} 
+                        description={<Button type="primary" onClick={()=>showDrawer(item.key)}>
+                      Detalle
+                    </Button>} />
+                    {selectedCard == item.key && (
+                      <Drawer
+                        title= {item.title}
+                        placement="top"
+                        closable={true}
+                        onClose={ onClose }
+                        open={open}
+                        getContainer={false}
+                      >
+                        {item.content}
+                      </Drawer>
+                      )}
                 </Card>
               </Col>
             )
-            
           })}
-            
-
           </Row>
         </div>
       </FieldSoccerContainer>
