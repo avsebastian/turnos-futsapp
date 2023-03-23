@@ -1,7 +1,6 @@
 const { DataTypes } = require('sequelize');
 const db = require('./index');
 const Role = require("./roles.js");
-const Person = require("./person.js");
 
 const User = db.define("User", {
   id: {
@@ -32,13 +31,11 @@ const User = db.define("User", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  lastName: DataTypes.STRING,
+  lastname: DataTypes.STRING,
   status: DataTypes.ENUM("habilitado", "bloqueado"),
 });
 
 User.belongsToMany(Role, { through: "RolesUsers" });
 Role.belongsToMany(User, { through: "RolesUsers" });
-User.belongsToMany(Person, { through: "PersonUsers" });
-Person.belongsToMany(User, { through: "PersonUsers" });
 
 module.exports = User;
