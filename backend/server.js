@@ -9,7 +9,7 @@ app.use(express.json()); //aceptar recibir y enviar json en nuestra api
 app.use("/api", apiRoutes);
 
 app.get("/api", (req, res) => {
-	res.send("Bienvenido, Registrate!!");
+	res.send("Bienvenido a la api, Registrate!!");
 })
 
 db.sync().then(() => {
