@@ -35,3 +35,4 @@ bookings (reservas)
 /api/bookings > GET > ver todas las reservas <br>
 /api/bookings/id > GET > mostrar reservas por id<br>
 /api/bookings/id > DEL > eliminar reserva por id<br>
+# backend_project_reservas

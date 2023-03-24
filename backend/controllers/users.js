@@ -63,6 +63,20 @@ const getAllBookingsByUserId = async (req, res) => {
   }
 }
 
+const login = async (req, res) => {
+  try {
+    const user = await userRepository.login(req.body);
+
+    if (user) {
+      res.json("Ingreso exitoso")
+    } else {
+      res.status(401).json("Ingreso no autorizado");
+    }
+  } catch (error)  {
+    res.status(401).json("Ingreso no autorizado");
+  }
+}
+
 module.exports = {
   getAllUsers,
   createUser,
@@ -70,5 +84,6 @@ module.exports = {
   updateUser,
   getUserById,
   createUserBooking,
-  getAllBookingsByUserId
+  getAllBookingsByUserId,
+  login
 }
