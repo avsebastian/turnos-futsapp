@@ -13,7 +13,7 @@ const userRoutes = express.Router();
 
 userRoutes.get("/", getAllUsers);
 userRoutes.get("/:userId", getUserById);
-userRoutes.post("/create/", createUser);
+userRoutes.post("/create", createUser);
 userRoutes.put("/:userId", updateUser);
 userRoutes.delete("/:userId", deleteUser);
 userRoutes.post("/:userId/booking/create/", createUserBooking)
