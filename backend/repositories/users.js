@@ -75,6 +75,21 @@ const getAllUserBookingById = async (userId) => {
 
   return user;
 };
+
+const login = async (userData) => {
+  const user = await User.findOne({ 
+    where: {
+      email: userData.email,
+      password: userData.password
+    }
+  })
+
+  if (user) {
+    return true;
+  } else {
+    return false;
+  }
+};
 module.exports = {
   getAllUsers,
   createUser,
@@ -82,5 +97,6 @@ module.exports = {
   updateUser,
   getUserById,
   createUserBooking,
-  getAllUserBookingById
+  getAllUserBookingById,
+  login
 };
