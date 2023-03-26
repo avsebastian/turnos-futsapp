@@ -1,46 +1,38 @@
 import React from 'react';
-import { useState } from 'react';
 
 import { Button, Checkbox, Form, Input, Modal } from 'antd';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 
-const LoginModal = ({ isLoginModalOpen, setIsLoginModalOpen }) => {
-  const [loading, setLoading] = useState(false);
-  const [form] = Form.useForm();
+const LoginModal = ({ open, onCancel, onOk, loading, onRegisterClick }) => {
+  const [formLogin] = Form.useForm();
 
-  const handleOk = () => {    
-    // TODO: llamada a la API para hacer login
-    form
-      .validateFields()
-      .then((values) => {
-        setLoading(true);
-        setTimeout(() => {
-          setLoading(false);
-          setIsLoginModalOpen(false);
-          form.resetFields();        
-        }, 3000);
-      })
-      .catch((info) => {        
-        console.log('Validate Failed:', info);
-      });
+  const handleOk = () => {
+    formLogin.validateFields().then((values) => {
+      onOk(values);
+      formLogin.resetFields();
+    });
   };
+
   const handleCancel = () => {
-    form.resetFields();
-    setIsLoginModalOpen(false);
+    formLogin.resetFields();
+    onCancel();
   };
 
-  const onFinish = (values) => {
-    console.log('Received values of form: ', values);
+  const handleRegisterClick = () => {
+    formLogin.resetFields();
+    onRegisterClick();
   };
-
   return (
     <Modal
       title="Iniciar Sesion"
-      open={isLoginModalOpen}
+      open={open}
       onOk={handleOk}
       onCancel={handleCancel}
+      confirmLoading={loading}
+      okText="Enviar"
+      cancelText="Registrarse"
       footer={[
-        <Button key="back" onClick={handleCancel}>
+        <Button key="cancel" onClick={handleRegisterClick}>
           Registrarse
         </Button>,
         <Button
@@ -59,15 +51,20 @@ const LoginModal = ({ isLoginModalOpen, setIsLoginModalOpen }) => {
         initialValues={{
           remember: true,
         }}
-        onFinish={onFinish}
-        form={form}
+        // onFinish={onFinish}
+        form={formLogin}
       >
         <Form.Item
           name="email"
+          label="Correo Electronico"
           rules={[
             {
               required: true,
               message: 'Por favor, introduzca su email!',
+            },
+            {
+              type: 'email',
+              message: 'Introduzca un email valido',
             },
           ]}
         >
@@ -79,6 +76,7 @@ const LoginModal = ({ isLoginModalOpen, setIsLoginModalOpen }) => {
         </Form.Item>
         <Form.Item
           name="password"
+          label="Contraseña"
           rules={[
             {
               required: true,
