@@ -1,7 +1,7 @@
-const Role = require("../models/roles");
-const Booking = require("../models/booking.js");
-const User = require("../models/user");
-const roleRepository = require("./roles");
+const Role = require('../models/roles');
+const Booking = require('../models/booking.js');
+const User = require('../models/user');
+const roleRepository = require('./roles');
 
 const getAllUsers = async () => {
   const users = await User.findAll();
@@ -11,7 +11,7 @@ const getAllUsers = async () => {
 
 const getUserById = async (userId) => {
   const user = await User.findByPk(userId, {
-    include: Role
+    include: Role,
   });
 
   return user;
@@ -70,19 +70,19 @@ const getAllUserBookingById = async (userId) => {
   const user = await User.findByPk(userId, {
     include: {
       model: Booking,
-    }
+    },
   });
 
   return user;
 };
 
 const login = async (userData) => {
-  const user = await User.findOne({ 
+  const user = await User.findOne({
     where: {
       email: userData.email,
-      password: userData.password
-    }
-  })
+      password: userData.password,
+    },
+  });
 
   if (user) {
     return true;
@@ -90,6 +90,13 @@ const login = async (userData) => {
     return false;
   }
 };
+
+const getUserByEmail = async (email) => {
+  const user = await User.findOne({ where: { email: email } });
+
+  return user;
+};
+
 module.exports = {
   getAllUsers,
   createUser,
@@ -98,5 +105,6 @@ module.exports = {
   getUserById,
   createUserBooking,
   getAllUserBookingById,
-  login
+  login,
+  getUserByEmail,
 };
