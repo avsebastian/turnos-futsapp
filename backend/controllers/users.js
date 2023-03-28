@@ -78,15 +78,17 @@ const login = async (req, res) => {
     if (!user) {
       return res.status(401).json({ message: 'Fallo la autenticacion' });
     }
+
+    const { dataValues } = user;
         
-    const passwordIsValid = await bcrypt.compare(password, user.password);
+    const passwordIsValid = await bcrypt.compare(password, dataValues.password);
 
     if (!passwordIsValid) {
       return res.status(401).json({ message: 'Fallo la autenticacion' });
     }
 
     const token = jwt.sign(
-      { userId: user.id, name: user.name, lastname: user.lastname },
+      { userId: dataValues.id, name: dataValues.name, lastname: dataValues.lastname },
       process.env.JWT_KEY,
       { expiresIn: '1d' }
     );
@@ -102,6 +104,7 @@ const login = async (req, res) => {
     //   res.status(401).json('Ingreso no autorizado');
     // }
   } catch (error) {
+    console.log('ERROR', error.message)
     res.status(401).json({ message: 'Ingreso no autorizado' });
   }
 };
@@ -138,6 +141,7 @@ const signup = async (req, res) => {
       expiresIn: 86400,
     });
   } catch (error) {
+    console.log('error',error);
     res.status(500).json({
       error: error,
     });
