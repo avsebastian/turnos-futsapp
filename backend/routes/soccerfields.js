@@ -7,9 +7,11 @@ const {
 	updateSoccerField,
   } = require("../controllers/soccerFields.js");
 
+const authorization = require('../middlewares/authorization');
+
 const soccerfieldRoutes = express.Router();
 
-soccerfieldRoutes.get("/", getAllSoccerFields);
+soccerfieldRoutes.get("/", authorization, getAllSoccerFields);
 soccerfieldRoutes.get("/:soccerfieldId", getSoccerFieldById);
 soccerfieldRoutes.post("/create/", createSoccerField);
 soccerfieldRoutes.put("/:soccerfieldId", updateSoccerField);
