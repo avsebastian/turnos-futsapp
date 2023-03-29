@@ -1,4 +1,6 @@
 const soccerfieldRepository = require ("../repositories/soccerfields.js");
+const { body, validationResult } = require('express-validator');
+
 
 
 const getAllSoccerFields = async (req, res) => {
@@ -15,6 +17,14 @@ const getSoccerFieldById = async (req, res) => {
 
 const createSoccerField = async (req, res) => {
   try {
+    await body('nombre').notEmpty().isAlphanumeric().run(req);
+    await body('descripcion').notEmpty().isAlpha().run(req);
+    await body('cantidadJugador').notEmpty().isNumeric().run(req);
+    
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
     const soccerfield = await soccerfieldRepository.createSoccerField(req.body);
 
     res.json({ soccerfield });
@@ -35,6 +45,14 @@ const deleteSoccerField = async (req, res) => {
 
 const updateSoccerField = async (req, res) => {
   try {
+    await body('nombre').notEmpty().isAlphanumeric().run(req);
+    await body('descripcion').notEmpty().isAlpha().run(req);
+    await body('cantidadJugador').notEmpty().isNumeric().run(req);
+    
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
     const soccerfield = await soccerfieldRepository.updateSoccerField(req.body, req.params.soccerfieldId);
 
     res.json({ soccerfield })

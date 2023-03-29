@@ -1,4 +1,5 @@
 const bookingRepository = require ("../repositories/bookings.js");
+const { body, validationResult } = require('express-validator');
 
 const getAllBookings = async (req, res) => {
   const bookings = await bookingRepository.getAllBookings();
@@ -14,6 +15,13 @@ const getBookingById = async (req, res) => {
 
 const createBooking = async (req, res) => {
   try {
+    await body('name').notEmpty().isAlphanumeric().run(req);
+    await body('descripcion').notEmpty().isAlpha().run(req);
+    
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
     const booking = await bookingRepository.createBooking(req.body);
 
     res.json({ booking });
@@ -34,6 +42,13 @@ const deleteBooking = async (req, res) => {
 
 const updateBooking = async (req, res) => {
   try {
+    await body('name').notEmpty().isAlphanumeric().run(req);
+    await body('descripcion').notEmpty().isAlpha().run(req);
+    
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
     const booking = await bookingRepository.updateBooking(req.body, req.params.bookingId);
 
     res.json({ booking })
