@@ -9,16 +9,15 @@ const Date = db.define("Date", {
     type: DataTypes.INTEGER,
     autoIncrement: true,
   },
-  fecha: {
+  date: {
     type: DataTypes.DATE,
     allowNull: false,
   },
-  precio: {
+  price: {
     type: DataTypes.FLOAT,
     allowNull: false,
   },
-
-  vigente: {
+  currently: {
     type: DataTypes.BOOLEAN,
     allowNull: false,
     defaultValue: true

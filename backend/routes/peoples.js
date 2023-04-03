@@ -1,4 +1,6 @@
 const express= require('express');
+const authorization = require('../middlewares/authorization');
+
 const {
 	createPeople,
 	deletePeople,

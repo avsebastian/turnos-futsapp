@@ -2,6 +2,7 @@ const userRepository = require('../repositories/users.js');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { body, validationResult } = require('express-validator');
+const {sendMail} = require("../services/mail")
 
 const getAllUsers = async (req, res) => {
   const users = await userRepository.getAllUsers();
@@ -16,21 +17,53 @@ const getUserById = async (req, res) => {
 };
 
 const createUser = async (req, res) => {
+  const { email, password, username } = req.body;
   try {
     await body('email').isEmail().run(req);
-    await body('name').notEmpty().isAlphanumeric().run(req);
+    await body('username').notEmpty().isAlphanumeric().run(req);
     await body('password').notEmpty().isLength({ min: 6 }).run(req);
-    await body('lastname').notEmpty().isAlpha().run(req);
     
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-    const user = await userRepository.createUser(req.body);
+    const isAlreadyAdded = await userRepository.getUserByEmail(email);
 
-    res.json({ user });
+    if (isAlreadyAdded) {
+      return res.status(400).json({
+        status: 'FAILED',
+        message: `Ya existe Usuario con el email '${email}'`,
+      });
+    }
+    else{
+      sendMail(email,password,username);
+    }
+
+    const hash = await bcrypt.hash(password, 10);
+
+    const user = await userRepository.createUser({
+      ...req.body,
+      password: hash,
+    });
+    
+
+    const token = jwt.sign(
+      { userId: user.id, username: user.username },
+      process.env.JWT_KEY,
+      { expiresIn: '1d' }
+    );
+
+    res.status(201).json({
+      message: 'Usuario creado con exito',
+      token: token,
+      expiresIn: 86400,
+    });
+    
   } catch (error) {
-    res.status(500).json({ error });
+    console.log('error',error);
+    res.status(500).json({
+      error: error,
+    });
   }
 };
 
@@ -67,7 +100,7 @@ const updateUser = async (req, res) => {
 const createUserBooking = async (req, res) => {
   try {
     await body('name').notEmpty().isAlphanumeric().run(req);
-    await body('descripcion').isString().run(req);
+    await body('description').isString().run(req);
     
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -85,9 +118,9 @@ const createUserBooking = async (req, res) => {
   }
 };
 
-const getAllBookingsByUserId = async (req, res) => {
+const getAllUserBookingsById = async (req, res) => {
   try {
-    const bookings = await userRepository.getAllBookingsByUserId(
+    const bookings = await userRepository.getAllUserBookingsById(
       req.params.userId
     );
 
@@ -112,7 +145,7 @@ const login = async (req, res) => {
     const user = await userRepository.getUserByEmail(email);
 
     if (!user) {
-      return res.status(401).json({ message: 'Fallo la autenticacion' });
+      return res.status(401).json({ message: 'Fallo la autenticacion: Usuario no existe.' });
     }
 
     const { dataValues } = user;
@@ -120,7 +153,7 @@ const login = async (req, res) => {
     const passwordIsValid = await bcrypt.compare(password, dataValues.password);
 
     if (!passwordIsValid) {
-      return res.status(401).json({ message: 'Fallo la autenticacion' });
+      return res.status(401).json({ message: 'Fallo la autenticacion: error en contraseña.' });
     }
 
     const token = jwt.sign(
@@ -134,11 +167,7 @@ const login = async (req, res) => {
       token: token,
       expiresIn: 86400,
     });
-    // if (user) {
-    //   res.json('Ingreso exitoso');
-    // } else {
-    //   res.status(401).json('Ingreso no autorizado');
-    // }
+
   } catch (error) {
     console.log('ERROR', error.message)
     res.status(401).json({ message: 'Ingreso no autorizado' });
@@ -158,6 +187,7 @@ const signup = async (req, res) => {
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
+
     const isAlreadyAdded = await userRepository.getUserByEmail(email);
 
     if (isAlreadyAdded) {
@@ -200,7 +230,7 @@ module.exports = {
   updateUser,
   getUserById,
   createUserBooking,
-  getAllBookingsByUserId,
+  getAllUserBookingsById,
   login,
   signup,
 };

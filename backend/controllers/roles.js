@@ -1,7 +1,5 @@
-const rolRepository = require ("../repositories/roles.js");
+const rolRepository = require ("../repositories/role.js");
 const { body, validationResult } = require('express-validator');
-
-
 
 const getAllRoles = async (req, res) => {
   const roles = await rolRepository.getAllRoles();

@@ -11,7 +11,7 @@ const BookingsType = db.define("BookingsType", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  descripcion: DataTypes.STRING,
+  description: DataTypes.STRING,
 });
 
 module.exports = BookingsType;

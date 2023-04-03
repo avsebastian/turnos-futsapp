@@ -12,11 +12,6 @@ const getBookingById = async (bookingId) => {
   return booking;
 };
 
-/**
- * Crea reserva
- * @param {*} userData 
- * @returns 
- */
 const createBooking = async (bookingData) => {
   try {
     const booking = await Booking.create(bookingData);
@@ -56,7 +51,6 @@ const updateBooking = async (bookingData, bookingId) => {
     return error;
   }
 };
-
 
 module.exports = {
   getAllBookings,

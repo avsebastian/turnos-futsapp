@@ -1,4 +1,6 @@
 const express= require('express');
+const authorization = require('../middlewares/authorization');
+
 const {
 	createRol,
 	deleteRol,
@@ -9,10 +11,10 @@ const {
 
 const rolRoutes = express.Router();
 
-rolRoutes.get("/", getAllRoles);
-rolRoutes.get("/:rolId", getRolById);
-rolRoutes.post("/create/", createRol);
-rolRoutes.put("/:rolId", updateRol);
-rolRoutes.delete("/:rolId", deleteRol);
+rolRoutes.get("/",authorization, getAllRoles);
+rolRoutes.get("/:rolId",authorization, getRolById);
+rolRoutes.post("/create/",authorization, createRol);
+rolRoutes.put("/:rolId",authorization, updateRol);
+rolRoutes.delete("/:rolId",authorization, deleteRol);
 
 module.exports = rolRoutes;

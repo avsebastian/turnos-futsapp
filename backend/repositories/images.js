@@ -12,11 +12,6 @@ const getImageById = async (imageId) => {
   return image;
 };
 
-/**
- * upload imagenes
- * @param {*} userData 
- * @returns 
- */
 const createImage = async (imageData) => {
   try {
     const image = await Image.create(imageData);
@@ -56,7 +51,6 @@ const updateImage = async (imageData, imageId) => {
     return error;
   }
 };
-
 
 module.exports = {
   getAllImages,

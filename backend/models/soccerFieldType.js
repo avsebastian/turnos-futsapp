@@ -7,7 +7,8 @@ const SoccerFieldType = db.define("SoccerFieldType", {
     type: DataTypes.INTEGER,
     autoIncrement: true,
   },
-  descripcion: DataTypes.STRING,
+  type: DataTypes.STRING,
+  description: DataTypes.STRING,
 });
 
 module.exports = SoccerFieldType;

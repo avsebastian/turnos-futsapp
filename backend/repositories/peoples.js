@@ -12,11 +12,6 @@ const getPeopleById = async (peopleId) => {
   return people;
 };
 
-/**
- * Create peoples
- * @param {*} peopleData 
- * @returns 
- */
 const createPeople = async (peopleData) => {
   try {
     const people = await People.create(peopleData);
@@ -56,7 +51,6 @@ const updatePeople = async (peopleData, peopleId) => {
     return error;
   }
 };
-
 
 module.exports = {
   getAllPeoples,

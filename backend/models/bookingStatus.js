@@ -11,7 +11,7 @@ const BookingsStatus = db.define("BookingsStatus", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  descripcion: DataTypes.STRING,
+  description: DataTypes.STRING,
 });
 
 module.exports = BookingsStatus;

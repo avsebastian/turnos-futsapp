@@ -1,7 +1,7 @@
-const Role = require('../models/roles');
+const Role = require('../models/role');
 const Booking = require('../models/booking.js');
 const User = require('../models/user');
-const roleRepository = require('./roles');
+const roleRepository = require("./role");
 
 const getAllUsers = async () => {
   const users = await User.findAll();
@@ -20,9 +20,15 @@ const getUserById = async (userId) => {
 const createUser = async (userData) => {
   try {
     const user = await User.create(userData);
-    const role = await roleRepository.getRoleById(userData.roleId);
-
-    await user.addRole(role);
+    
+    if (userData.roleId){
+      const role = await roleRepository.getRoleById(userData.roleId);
+      await user.addRole(role);
+    }
+    else{
+      const role = await roleRepository.getRoleById("3");
+      await user.addRole(role);
+    }
 
     return user;
   } catch (error) {
@@ -66,7 +72,7 @@ const createUserBooking = async (bookingData, userId) => {
   return bookings;
 };
 
-const getAllUserBookingById = async (userId) => {
+const getAllUserBookingsById = async (userId) => {
   const user = await User.findByPk(userId, {
     include: {
       model: Booking,
@@ -104,7 +110,7 @@ module.exports = {
   updateUser,
   getUserById,
   createUserBooking,
-  getAllUserBookingById,
+  getAllUserBookingsById,
   login,
   getUserByEmail,
 };

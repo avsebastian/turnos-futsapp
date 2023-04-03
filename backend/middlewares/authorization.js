@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-
 const User = require('../models/user');
 
 module.exports = (req, res, next) => {
@@ -26,7 +25,6 @@ module.exports = (req, res, next) => {
     const verifyToken = jwToken.split(' ')[1];
     jwt.verify(verifyToken, process.env.JWT_KEY, decodeToken);
   } catch (err) {
-    //console.error(err.message);
     res.status(403).json({ msg: 'No autorizado' });
   }
 };

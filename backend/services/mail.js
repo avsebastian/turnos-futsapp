@@ -3,26 +3,27 @@ const config = require("../config.js");
 
 // create reusable transporter object using the default SMTP transport
 const transporter = nodemailer.createTransport({
-  host: 'smtp.ethereal.email',
+  host: 'smtp.correoseguro.co',
   port: 587,
   secure: false,
   auth: {
-      user: 'louvenia73@ethereal.email',
-      pass: 'um8dp4NUP1JpdrrZNg'
+      user: config.EMAIL_USERNAME,
+      pass: config.EMAIL_PASSWORD
   }
 });
 
-async function sendMail() {
+const sendMail = async function sendMail(email,password,username) {
   await transporter.sendMail({
-    from: '"Admin FutsApp" <admin@srtesthost.tk>', // sender address
-    to: "serggio.rs@gmail.com", // list of receivers
-    subject: "Hello ✔", // Subject line
-    text: "Hello world?", // plain text body
-    html: `<b>Hello</b>`, // html body
+    from: 'admin@srtesthost.tk', 
+    to: [email, 'admin@srtesthost.tk'], 
+    subject: "Registro exitoso a FutsApp", 
+    html: `<b>Bienvenido ${username} a FutsApp</b><br>Datos de acceso:<br> Cuenta: ${email} <br> Clave: ${password}`, 
   });
 
-  console.log("Message sent: %s");
+  console.log(`Send mail '${email}'`);
+  
+  return
 }
 module.exports = {
-    sendMail
-}
+  sendMail
+};

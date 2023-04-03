@@ -12,11 +12,6 @@ const getSoccerFieldById = async (soccerfieldId) => {
   return soccerfield;
 };
 
-/**
- * create cancha de futbol
- * @param {*} userData 
- * @returns 
- */
 const createSoccerField = async (soccerfieldData) => {
   try {
     const soccerfield = await SoccerField.create(soccerfieldData);
@@ -56,7 +51,6 @@ const updateSoccerField = async (soccerfieldData, soccerfieldId) => {
     return error;
   }
 };
-
 
 module.exports = {
   getAllSoccerFields,

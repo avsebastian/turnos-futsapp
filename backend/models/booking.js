@@ -11,7 +11,8 @@ const Bookings = db.define("Bookings", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  descripcion: DataTypes.STRING,
+  description: DataTypes.STRING,
+  status: DataTypes.ENUM("pedido", "rechazado", "confirmado", "finalizado"),
 });
 
 module.exports = Bookings;

@@ -1,4 +1,5 @@
 const express = require('express');
+const authorization = require('../middlewares/authorization');
 const {
   createUser,
   createUserBooking,
@@ -6,20 +7,20 @@ const {
   getAllUsers,
   getUserById,
   updateUser,
-  getAllBookingsByUserId,
+  getAllUserBookingsById,
   login,
   signup,
 } = require('../controllers/users.js');
 
 const userRoutes = express.Router();
 
-userRoutes.get('/', getAllUsers);
-userRoutes.get('/:userId', getUserById);
+userRoutes.get('/',authorization, getAllUsers);
+userRoutes.get('/:userId',authorization ,  getUserById);
 userRoutes.post('/create', createUser);
-userRoutes.put('/:userId', updateUser);
-userRoutes.delete('/:userId', deleteUser);
-userRoutes.post('/:userId/booking/create/', createUserBooking);
-userRoutes.get('/:userId/bookings', getAllBookingsByUserId);
+userRoutes.put('/:userId',authorization,  updateUser);
+userRoutes.delete('/:userId',authorization, deleteUser);
+userRoutes.post('/:userId/booking/create/',authorization, createUserBooking);
+userRoutes.get('/:userId/bookings',authorization, getAllUserBookingsById);
 userRoutes.post('/login', login);
 userRoutes.post('/signup', signup);
 

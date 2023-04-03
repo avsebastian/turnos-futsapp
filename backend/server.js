@@ -4,6 +4,7 @@ const db = require("./models");
 const app = express();
 const config = require("./config.js")
 
+
 app.use(express.json()); //aceptar recibir y enviar json en nuestra api
 
 app.use("/api", apiRoutes);

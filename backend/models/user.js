@@ -1,6 +1,8 @@
 const { DataTypes } = require('sequelize');
 const db = require('./index');
-const Role = require("./roles.js");
+const Role = require("./role.js");
+const Bookings = require("./booking.js");
+const People = require("./people.js");
 
 const User = db.define("User", {
   id: {
@@ -8,7 +10,7 @@ const User = db.define("User", {
     type: DataTypes.INTEGER,
     autoIncrement: true,
   },
-  name: {
+  username: {
     type: DataTypes.STRING,
     allowNull: false,
     validate: {
@@ -31,9 +33,14 @@ const User = db.define("User", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  lastname: DataTypes.STRING,
   status: DataTypes.ENUM("habilitado", "bloqueado"),
 });
+
+User.hasMany(Bookings);
+Bookings.belongsTo(User);
+
+User.belongsTo(People);
+People.belongsTo(User);
 
 User.belongsToMany(Role, { through: "RolesUsers" });
 Role.belongsToMany(User, { through: "RolesUsers" });

@@ -10,13 +10,13 @@ const SoccerField = db.define("SoccerField", {
     type: DataTypes.INTEGER,
     autoIncrement: true,
   },
-  nombre: {
+  name: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  descripcion: DataTypes.STRING,
+  description: DataTypes.STRING,
 
-  cantidadJugador: {
+  amountPlayers: {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
