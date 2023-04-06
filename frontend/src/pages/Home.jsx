@@ -1,35 +1,21 @@
-import React, { useState } from "react";
-
-import NavBar from "../components/NavBar";
-import HeroSection from '../components/HeroSection'
-import AboutSection from "../components/AboutSection";
-import FieldSoccerSection from "../components/FieldSoccerSection";
-
-import LoginModal from "../components/LoginModal";
-
-export function Home() {
-
-    const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-
-    return(
-        <>
-            <NavBar isLoginModalOpen={isLoginModalOpen} setIsLoginModalOpen={setIsLoginModalOpen}/>
-            <HeroSection />
-            <AboutSection />
-            <FieldSoccerSection />
 import React, { useState } from 'react';
-import { Button, Layout } from 'antd';
-import Navbar from '../components/Navbar';
+
+import NavBar from '../components/NavBar';
+// import Navbar from '../components/Navbar';
+
+import HeroSection from '../components/HeroSection';
+import AboutSection from '../components/AboutSection';
+import FieldSoccerSection from '../components/FieldSoccerSection';
 
 import LoginModal from '../components/LoginModal';
 import RegisterModal from '../components/RegisterModal';
+import { Button, Layout } from 'antd';
 
 const { Content, Footer } = Layout;
 
-const Home = () => {
-  // const {
-  //   token: { colorBgContainer },
-  // } = theme.useToken();
+export function Home() {
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+
   const [loading, setLoading] = useState(false);
 
   const [loginModalOpen, setLoginModalOpen] = useState(false);
@@ -45,6 +31,7 @@ const Home = () => {
 
   const handleLoginModalCancel = () => {
     setLoginModalOpen(false);
+    setIsLoginModalOpen(false);
   };
 
   const handleRegisterModalCancel = () => {
@@ -52,12 +39,14 @@ const Home = () => {
   };
   const handleRegisterModalClick = () => {
     setLoginModalOpen(false);
+    setIsLoginModalOpen(false);
     setRegisterModalOpen(true);
   };
 
   const handleLoginModalClick = () => {
     setRegisterModalOpen(false);
     setLoginModalOpen(true);
+    setIsLoginModalOpen(true);
   };
 
   const handleLogin = (values) => {
@@ -90,66 +79,61 @@ const Home = () => {
   };
 
   return (
-    <Layout className="layout">
-      <Navbar />
-      <Content
-        style={{
-          padding: '0 50px',
-        }}
-      >
-        <div
-          className="site-layout-content"
-          // style={{
-          //   background: colorBgContainer,
-          // }}
+    <>
+      <NavBar
+        isLoginModalOpen={isLoginModalOpen}
+        setIsLoginModalOpen={setIsLoginModalOpen}
+      />
+      <HeroSection />
+      <AboutSection />
+      <FieldSoccerSection />
+
+      <Layout className="layout">
+        {/* <Navbar /> */}
+        <Content
+          style={{
+            padding: '0 50px',
+          }}
         >
-          Content
-        </div>
-        {/* TODO: Estoso botones llevarlo al navbar */}
-        {!isLoggedIn() && (
-          <>
-            <Button type="primary" onClick={showLoginModal}>
-              Iniciar sesión
+          {/* TODO: Estoso botones llevarlo al navbar */}
+          {!isLoggedIn() && (
+            <>
+              <Button type="primary" onClick={showLoginModal}>
+                Iniciar sesión
+              </Button>
+              <Button type="primary" onClick={showRegisterModal}>
+                Registrarse
+              </Button>
+              <LoginModal
+                open={isLoginModalOpen}
+                onCancel={handleLoginModalCancel}
+                onOk={handleLogin}
+                loading={loading}
+                onRegisterClick={handleRegisterModalClick}
+              />
+              <RegisterModal
+                open={registerModalOpen}
+                onCancel={handleRegisterModalCancel}
+                onOk={handleRegister}
+                loading={loading}
+                onLoginClick={handleLoginModalClick}
+              />
+            </>
+          )}
+          {isLoggedIn() && (
+            <Button type="primary" onClick={handleLogout}>
+              Cerrar Sesion
             </Button>
-            <Button type="primary" onClick={showRegisterModal}>
-              Registrarse
-            </Button>
-            <LoginModal
-              open={loginModalOpen}
-              onCancel={handleLoginModalCancel}
-              onOk={handleLogin}
-              loading={loading}
-              onRegisterClick={handleRegisterModalClick}
-            />
-            <RegisterModal
-              open={registerModalOpen}
-              onCancel={handleRegisterModalCancel}
-              onOk={handleRegister}
-              loading={loading}
-              onLoginClick={handleLoginModalClick}
-            />
-          </>
-        )}
-        {isLoggedIn() && (
-          <Button type="primary" onClick={handleLogout}>
-            Cerrar Sesion
-          </Button>
-        )}
-      </Content>
-      <Footer
-        style={{
-          textAlign: 'center',
-        }}
-      >
-        Ant Design ©2023 Created by Futsapp
-      </Footer>
-    </Layout>
+          )}
+        </Content>
+      </Layout>
+
+      {isLoginModalOpen && (
+        <LoginModal
+          isLoginModalOpen={isLoginModalOpen}
+          setIsLoginModalOpen={setIsLoginModalOpen}
+        />
+      )}
+    </>
   );
-};
-
-export default Home;
-
-            {isLoginModalOpen && <LoginModal isLoginModalOpen={isLoginModalOpen} setIsLoginModalOpen={setIsLoginModalOpen}/>}
-        </>
-    ) 
 }
