@@ -10,4 +10,9 @@ module.exports = {
     EMAIL_USERNAME: process.env.EMAIL_USERNAME || '',
     EMAIL_PASSWORD: process.env.EMAIL_PASSWORD || '',
     JWT_KEY: process.env.JWT_KEY,
+
+    CLOUDINARY_URL: process.env.CLOUDINARY_URL,
+    CLOUD_NAME: process.env.CLOUD_NAME,
+    CLOUD_KEY: process.env.CLOUD_KEY,
+    CLOUD_SECRET: process.env.CLOUD_SECRET,
 }

@@ -29,6 +29,9 @@ const createUser = async (req, res) => {
     }
     const isAlreadyAdded = await userRepository.getUserByEmail(email);
 
+    
+    //const user = await userRepository.createUser(req.body);
+
     if (isAlreadyAdded) {
       return res.status(400).json({
         status: 'FAILED',

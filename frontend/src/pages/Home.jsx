@@ -10,10 +10,20 @@ import LoginModal from '../components/LoginModal';
 import RegisterModal from '../components/RegisterModal';
 import { Button, Layout } from 'antd';
 
-const { Content, Footer } = Layout;
+import LoginModal from "../components/LoginModal";
+
+import { store } from '../store';
+const { useModelDispatchers } = store;
 
 export function Home() {
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+
+    const { getAllSoccerFields } = useModelDispatchers('authentication');
+
+    const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+
+    useEffect(()=> {
+        getAllSoccerFields();
+    },[]);
 
   const [loading, setLoading] = useState(false);
 
