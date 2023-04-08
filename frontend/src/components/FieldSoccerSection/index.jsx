@@ -61,6 +61,7 @@ const FieldSoccerSection = () => {
                     {selectedCard == item.id && (
                       <Drawer
                         title= {item.name}
+                        style={{height:'300px'}}
                         placement="top"
                         closable={true}
                         onClose={ onClose }
