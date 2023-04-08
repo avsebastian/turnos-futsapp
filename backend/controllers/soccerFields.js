@@ -4,9 +4,9 @@ const { body, validationResult } = require('express-validator');
 
 
 const getAllSoccerFields = async (req, res) => {
-  const soccerfields = await soccerfieldRepository.getAllSoccerFields();
 
-  res.status(200).json({ soccerfields });
+  const response = await soccerfieldRepository.getAllSoccerFields();
+  res.status(200).json({ response });
 };
 
 const getSoccerFieldById = async (req, res) => {
@@ -17,9 +17,10 @@ const getSoccerFieldById = async (req, res) => {
 
 const createSoccerField = async (req, res) => {
   try {
-    await body('nombre').notEmpty().isAlphanumeric().run(req);
-    await body('descripcion').notEmpty().isAlpha().run(req);
-    await body('cantidadJugador').notEmpty().isNumeric().run(req);
+    
+    await body('name').notEmpty().isAlpha().run(req.body);
+    await body('description').notEmpty().isAlphanumeric().run(req.body);
+    await body('amountPlayers').notEmpty().isNumeric().run(req.body);
     
     const errors = validationResult(req);
     if (!errors.isEmpty()) {

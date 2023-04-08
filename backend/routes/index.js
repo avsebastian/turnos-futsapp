@@ -14,6 +14,6 @@ apiRoutes.use("/bookings",authorization, bookingsRoutes);
 apiRoutes.use("/roles",authorization, rolesRoutes);
 apiRoutes.use("/images",authorization, imagesRoutes);
 apiRoutes.use("/peoples",authorization, peoplesRoutes);
-apiRoutes.use("/soccerfields",authorization, soccerfieldsRoutes);
+apiRoutes.use("/soccerfields", soccerfieldsRoutes);
 
 module.exports = apiRoutes;

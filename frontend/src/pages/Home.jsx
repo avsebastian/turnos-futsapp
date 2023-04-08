@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import NavBar from '../components/NavBar';
 
@@ -6,7 +6,6 @@ import HeroSection from '../components/HeroSection';
 import AboutSection from '../components/AboutSection';
 import FieldSoccerSection from '../components/FieldSoccerSection';
 
-import LoginModal from '../components/LoginModal';
 import RegisterModal from '../components/RegisterModal';
 import { Button, Layout } from 'antd';
 
@@ -97,14 +96,14 @@ export function Home() {
       <AboutSection />
       <FieldSoccerSection />
 
-      <Layout className="layout">
-        {/* <Navbar /> */}
+      {/* <Layout className="layout">
+        {/* <Navbar /> 
         <Content
           style={{
             padding: '0 50px',
           }}
         >
-          {/* TODO: Estoso botones llevarlo al navbar */}
+          {/* TODO: Estoso botones llevarlo al navbar 
           {!isLoggedIn() && (
             <>
               <Button type="primary" onClick={showLoginModal}>
@@ -135,14 +134,14 @@ export function Home() {
             </Button>
           )}
         </Content>
-      </Layout>
+      </Layout> 
 
       {isLoginModalOpen && (
         <LoginModal
           isLoginModalOpen={isLoginModalOpen}
           setIsLoginModalOpen={setIsLoginModalOpen}
         />
-      )}
+      )}*/}
     </>
   );
 }

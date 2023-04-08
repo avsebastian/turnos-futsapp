@@ -1,4 +1,4 @@
-import { API_URL_PRODUCTION as URL_API } from '../config/api';
+import { API_URL_DEVELOPMENT as URL_API } from '../config/api';
 
 export default {
   loginEmail: async (data) => {
@@ -69,19 +69,17 @@ export default {
   getAllSoccerFields: async () => {
     try {
       
-      const res =  await fetch(`${URL_API}/soccerfields`);
+      const res =  await fetch(`${URL_API}/soccerfields`,{mode: 'cors'});
 
+      if(res.ok){
       const soccerFields = await res.json();
-
-      console.log('soccerFields fom file apiServices', soccerFields);
-
-      // if (!soccerFields.ok) {
-      //   throw soccerFields;
-      // }
-
-      return res;
+      
+      return soccerFields.response;
+      }else{
+        throw res;
+      }
     } catch (error) {
-      console.log('getReportes error', error);
+      console.log('getAllSoccerFields error', error.message);
       throw error;
     }
   },

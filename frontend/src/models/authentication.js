@@ -142,7 +142,6 @@ const model = {
 
     async getAllSoccerFields(){
       const canchasResp = await apiServices.getAllSoccerFields();
-
       this.setState({
         canchas: canchasResp,
       });

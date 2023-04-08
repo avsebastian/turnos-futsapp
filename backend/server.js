@@ -2,10 +2,27 @@ const express = require("express");
 const apiRoutes = require("./routes");
 const db = require("./models");
 const app = express();
-const config = require("./config.js")
+const config = require("./config.js");
+const cors = require('cors');
 
+
+const corsOpts = {
+	origin: '*',
+  
+	methods: [
+	  'GET',
+	  'POST',
+	],
+  
+	allowedHeaders: [
+	  'Content-Type',
+	],
+  };
+  
+app.use(cors(corsOpts));
 
 app.use(express.json()); //aceptar recibir y enviar json en nuestra api
+
 
 app.use("/api", apiRoutes);
 
