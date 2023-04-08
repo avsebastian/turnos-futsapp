@@ -176,10 +176,10 @@ const login = async (req, res) => {
 
 const signup = async (req, res) => {
   const { email, password } = req.body;
-
+  console.log('req', req.body);
   try {
     await body('email').isEmail().run(req);
-    await body('name').notEmpty().isAlphanumeric().run(req);
+    await body('username').notEmpty().isAlphanumeric().run(req);
     await body('password').notEmpty().isLength({ min: 6 }).run(req);
     await body('lastname').notEmpty().isAlpha().run(req);
 
@@ -205,7 +205,7 @@ const signup = async (req, res) => {
     });
 
     const token = jwt.sign(
-      { userId: user.id, name: user.name, lastname: user.lastname },
+      { userId: user.id, name: user.username, lastname: user.lastname },
       process.env.JWT_KEY,
       { expiresIn: '1d' }
     );
@@ -216,7 +216,7 @@ const signup = async (req, res) => {
       expiresIn: 86400,
     });
   } catch (error) {
-    console.log('error',error);
+    console.log('error',error.message);
     res.status(500).json({
       error: error,
     });
