@@ -1,5 +1,6 @@
 import authentication from './authentication';
+import cancha from './cancha';
 
-const rootModels = { authentication };
+const rootModels = { authentication, cancha };
 
 export default rootModels;

@@ -5,8 +5,7 @@ const initialState = {
   token: null,
   user: null,
   error: null,
-  message: null,
-  canchas: null,
+  message: null
 };
 
 const model = {
@@ -138,13 +137,6 @@ const model = {
           error: error.messageError,
         });
       }
-    },
-
-    async getAllSoccerFields(){
-      const canchasResp = await apiServices.getAllSoccerFields();
-      this.setState({
-        canchas: canchasResp,
-      });
     }
   }),
 };
