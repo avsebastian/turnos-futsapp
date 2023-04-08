@@ -165,9 +165,14 @@ const login = async (req, res) => {
       { expiresIn: '1d' }
     );
 
+    //Delete propertie 'password' of result User.
+    delete dataValues.password;
+
+
     res.status(200).json({
       message: 'Autenticacion exitosa',
       token: token,
+      user: dataValues,
       expiresIn: 86400,
     });
 
