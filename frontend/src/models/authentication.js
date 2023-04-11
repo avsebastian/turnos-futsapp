@@ -34,7 +34,7 @@ const model = {
     async login(formData) {
       try {
         const res = await apiServices.loginEmail(formData);
-        authStorage.setToken(res.token);
+        authStorage.setToken('token',res.token);
         this.setState({
           token: res.token,
           user: res.user,

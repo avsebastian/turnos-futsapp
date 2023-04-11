@@ -3,42 +3,51 @@ import React from 'react';
 import { Button, Checkbox, Form, Input, Modal } from 'antd';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 
-const LoginModal = ({ open, onCancel, onOk, loading, onRegisterClick }) => {
+import { store } from '../store';
+const { useModelState, getModelDispatchers } = store;
+
+const LoginModal = ({ handleClose, isLoginModalOpen }) => {
+
+  const { login } = getModelDispatchers('authentication');
+  
   const [formLogin] = Form.useForm();
 
   const handleOk = () => {
     formLogin.validateFields().then((values) => {
-      onOk(values);
+      login(values);
+      handleClose();
       formLogin.resetFields();
     });
   };
 
-  const handleCancel = () => {
-    formLogin.resetFields();
-    onCancel();
-  };
+  // const handleCancel = () => {
+  //   formLogin.resetFields();
+  //   handleClose();
+  //   //onCancel();
+  // };
 
   const handleRegisterClick = () => {
     formLogin.resetFields();
-    onRegisterClick();
+    //onRegisterClick();
   };
   return (
     <Modal
       title="Iniciar Sesion"
-      open={open}
+      open={isLoginModalOpen}
       onOk={handleOk}
-      onCancel={handleCancel}
-      confirmLoading={loading}
+      //onCancel={handleCancel}
+      onCancel={handleClose}
+      //confirmLoading={loading}
       okText="Enviar"
       cancelText="Registrarse"
       footer={[
-        <Button key="cancel" onClick={handleRegisterClick}>
+        <Button key="cancel" onClick={handleClose}>
           Registrarse
         </Button>,
         <Button
           key="submit"
           type="primary"
-          loading={loading}
+          //loading={loading}
           onClick={handleOk}
         >
           Enviar

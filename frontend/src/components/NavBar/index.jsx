@@ -15,6 +15,8 @@ import {
 import Sidebar from "../Sidebar";
 import { Button } from '../ButtonElement'
 
+import LoginModal from '../../components/LoginModal';
+
 function NavBar({isLoginModalOpen, setIsLoginModalOpen}) {
 
   const [openMenu, setOpenMenu] = useState(false);
@@ -88,7 +90,7 @@ function NavBar({isLoginModalOpen, setIsLoginModalOpen}) {
                 </NavItem>
             </NavMenu>
             <NavBtn>
-                <Button onClick={handleModalLogin}> Iniciar Sesión </Button>
+                <Button onClick={()=>setIsLoginModalOpen(true)}> Iniciar Sesión </Button>
             </NavBtn>
         </NavbarContainer>
       </Nav>

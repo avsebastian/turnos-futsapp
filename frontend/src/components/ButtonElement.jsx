@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import { Link } from 'react-scroll'
 
-export const Button = styled(Link)`
+export const Button = styled.span`
     border-radius: 50px;
     background: #256ce1;
     padding: 10px 22px;

@@ -5,6 +5,8 @@ import HeroSection from '../components/HeroSection';
 import AboutSection from '../components/AboutSection';
 import FieldSoccerSection from '../components/FieldSoccerSection';
 
+import LoginModal from '../components/LoginModal';
+
 
 export function Home() {
 
@@ -13,6 +15,8 @@ export function Home() {
 
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [registerModalOpen, setRegisterModalOpen] = useState(false);
+
+  const handleLoginModal = () => setIsLoginModalOpen((prevState) => !prevState);
 
   return (
     <>
@@ -23,6 +27,9 @@ export function Home() {
       <HeroSection />
       <AboutSection />
       <FieldSoccerSection />
+      
+
+      {isLoginModalOpen &&  <LoginModal handleClose={handleLoginModal} isLoginModalOpen={isLoginModalOpen}/>}
     </>
   );
 }

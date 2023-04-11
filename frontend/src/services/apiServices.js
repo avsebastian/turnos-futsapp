@@ -3,7 +3,7 @@ import { API_URL_DEVELOPMENT as URL_API } from '../config/api';
 export default {
   loginEmail: async (data) => {
     try {
-      const getDataUser = await fetch(`${URL_API}/login`, {
+      const getDataUser = await fetch(`${URL_API}/users/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -25,7 +25,7 @@ export default {
 
   registerUser: async (data) => {
     try {
-      const getDataUser = await fetch(`${URL_API}/signup`, {
+      const getDataUser = await fetch(`${URL_API}/users/signup`, {
         method: 'POST',
         headers: {
           Accept: 'application/json, text/plain, */*',
