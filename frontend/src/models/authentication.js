@@ -68,7 +68,7 @@ const model = {
     },
 
     async logout() {
-      await authStorage.removeToken();
+      await authStorage.clear();
 
       this.setState(initialState);
     },
