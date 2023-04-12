@@ -36,7 +36,7 @@ const User = db.define("User", {
   status: DataTypes.ENUM("habilitado", "bloqueado"),
 });
 
-User.hasMany(People);
+User.belongsTo(People);
 People.belongsTo(User);
 
 User.hasMany(Bookings);

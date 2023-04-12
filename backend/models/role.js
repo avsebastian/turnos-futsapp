@@ -7,17 +7,13 @@ const Role = db.define("Role", {
     type: DataTypes.INTEGER,
     autoIncrement: true,
   },
-  name: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
   description: DataTypes.STRING,
 });
 // Agregar roles
 Role.bulkCreate([
-  { id:"1",name: 'admin', description: 'Administrador' },
-  { id:"2",name: 'superadmin', description: 'Super Administrador' },
-  { id:"3",name: 'user', description: 'Usuario' }
+  { id:"1",description: 'admin' },
+  { id:"2",description: 'superadmin' },
+  { id:"3",description: 'user' }
 ])
   .then(() => {
     console.log('Se agregaron roles correctamente');
