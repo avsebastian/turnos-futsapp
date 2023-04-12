@@ -17,10 +17,10 @@ const getUserById = async (req, res) => {
 };
 
 const createUser = async (req, res) => {
-  const { email, password, username } = req.body;
+  const { email, password, name } = req.body;
   try {
     await body('email').isEmail().run(req);
-    await body('username').notEmpty().isAlphanumeric().run(req);
+    await body('name').notEmpty().isAlphanumeric().run(req);
     await body('password').notEmpty().isLength({ min: 6 }).run(req);
     
     const errors = validationResult(req);
@@ -39,7 +39,7 @@ const createUser = async (req, res) => {
       });
     }
     else{
-      sendMail(email,password,username);
+      sendMail(email,password,name);
     }
 
     const hash = await bcrypt.hash(password, 10);
@@ -51,7 +51,7 @@ const createUser = async (req, res) => {
     
 
     const token = jwt.sign(
-      { userId: user.id, username: user.username },
+      { userId: user.id, name: user.name },
       process.env.JWT_KEY,
       { expiresIn: '1d' }
     );
@@ -85,7 +85,6 @@ const updateUser = async (req, res) => {
     await body('email').isEmail().run(req);
     await body('name').notEmpty().isAlphanumeric().run(req);
     await body('password').notEmpty().isLength({ min: 6 }).run(req);
-    await body('lastname').notEmpty().isAlpha().run(req);
     
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -187,7 +186,7 @@ const signup = async (req, res) => {
   console.log('req', req.body);
   try {
     await body('email').isEmail().run(req);
-    await body('username').notEmpty().isAlphanumeric().run(req);
+    await body('name').notEmpty().isAlphanumeric().run(req);
     await body('password').notEmpty().isLength({ min: 6 }).run(req);
     await body('lastname').notEmpty().isAlpha().run(req);
 
@@ -213,7 +212,7 @@ const signup = async (req, res) => {
     });
 
     const token = jwt.sign(
-      { userId: user.id, name: user.username, lastname: user.lastname },
+      { userId: user.id, name: user.name, lastname: user.lastname },
       process.env.JWT_KEY,
       { expiresIn: '1d' }
     );

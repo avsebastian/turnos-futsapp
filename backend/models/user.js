@@ -10,7 +10,7 @@ const User = db.define("User", {
     type: DataTypes.INTEGER,
     autoIncrement: true,
   },
-  username: {
+  name: {
     type: DataTypes.STRING,
     allowNull: false,
     validate: {
@@ -36,11 +36,11 @@ const User = db.define("User", {
   status: DataTypes.ENUM("habilitado", "bloqueado"),
 });
 
+User.hasMany(People);
+People.belongsTo(User);
+
 User.hasMany(Bookings);
 Bookings.belongsTo(User);
-
-User.belongsTo(People);
-People.belongsTo(User);
 
 User.belongsToMany(Role, { through: "RolesUsers" });
 Role.belongsToMany(User, { through: "RolesUsers" });
