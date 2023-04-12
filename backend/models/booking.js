@@ -1,5 +1,8 @@
 const { DataTypes } = require('sequelize');
 const db = require('./index');
+const BookingType = require("./bookingType.js");
+const BookingStatus = require("./bookingStatus.js");
+const BookingDate = require("./bookingDate.js");
 
 const Bookings = db.define("Bookings", {
   id: {
@@ -7,12 +10,22 @@ const Bookings = db.define("Bookings", {
     type: DataTypes.INTEGER,
     autoIncrement: true,
   },
-  name: {
+  cod: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  description: DataTypes.STRING,
-  status: DataTypes.ENUM("pedido", "rechazado", "confirmado", "finalizado"),
+  creation_date: {
+    type: DataTypes.DATE,
+    allowNull: false,
+  }
 });
+Bookings.hasMany(BookingType);
+BookingType.belongsTo(Bookings);
+
+Bookings.hasMany(BookingStatus);
+BookingStatus.belongsTo(Bookings);
+
+Bookings.hasMany(BookingDate);
+BookingDate.belongsTo(Bookings);
 
 module.exports = Bookings;

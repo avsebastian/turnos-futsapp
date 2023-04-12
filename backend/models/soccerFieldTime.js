@@ -1,14 +1,14 @@
 const { DataTypes } = require('sequelize');
 const db = require('./index');
 
-const SoccerFieldType = db.define("SoccerFieldType", {
+const SoccerFieldTime = db.define("SoccerFieldTime", {
   id: {
     primaryKey: true,
     type: DataTypes.INTEGER,
     autoIncrement: true,
   },
-  type: DataTypes.STRING,
-  description: DataTypes.STRING,
+  time: DataTypes.TIME,
+  status: DataTypes.ENUM("habilitado", "bloqueado"),
 });
 
-module.exports = SoccerFieldType;
+module.exports = SoccerFieldTime;

@@ -13,6 +13,10 @@ const Date = db.define("Date", {
     type: DataTypes.DATE,
     allowNull: false,
   },
+  time: {
+    type: DataTypes.TIME,
+    allowNull: false,
+  },
   price: {
     type: DataTypes.FLOAT,
     allowNull: false,
@@ -23,8 +27,7 @@ const Date = db.define("Date", {
     defaultValue: true
   },
 });
-
-Date.belongsToMany(SoccerField, { through: "DateSoccerField" });
-SoccerField.belongsToMany(Date, { through: "DateSoccerField" });
+Date.hasMany(SoccerField);
+SoccerField.belongsTo(Date);
 
 module.exports = Date;

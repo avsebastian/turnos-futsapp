@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const db = require('./index');
 const Image = require("./image");
-const SoccerFieldType = require("./soccerFieldType.js");
+const SoccerFieldTime = require("./soccerFieldTime.js");
 
 const SoccerField = db.define("SoccerField", {
   id: {
@@ -15,6 +15,7 @@ const SoccerField = db.define("SoccerField", {
     allowNull: false,
   },
   description: DataTypes.STRING,
+  type: DataTypes.STRING,
 
   amountPlayers: {
     type: DataTypes.INTEGER,
@@ -23,9 +24,9 @@ const SoccerField = db.define("SoccerField", {
 });
 // Agregar canchas predeterminadas
 SoccerField.bulkCreate([
-  { id:"1",name: 'futbol5', description: '5 jugadores', amountPlayers: '5'},
-  { id:"2",name: 'futbol6', description: '6 jugadores',amountPlayers: '6'},
-  { id:"3",name: 'futbol11', description: '11 jugadores',amountPlayers: '11'}
+  { id:"1",name: 'futbol5', description: '5 jugadores', type:'futbol5', amountPlayers: '5'},
+  { id:"2",name: 'futbol6', description: '6 jugadores', type:'futbol6', amountPlayers: '6'},
+  { id:"3",name: 'futbol11', description: '11 jugadores', type:'futbol11', amountPlayers: '11'}
 ])
   .then(() => {
     console.log('Se agregaron canchas correctamente');
@@ -34,9 +35,11 @@ SoccerField.bulkCreate([
     console.error('Error al agregar canchas', error);
   });
 
-SoccerField.belongsToMany(Image, { through: "ImageSoccerField" });
-Image.belongsToMany(SoccerField, { through: "ImageSoccerField" });
-SoccerField.belongsToMany(SoccerFieldType, { through: "ImageSoccerField" });
-SoccerFieldType.belongsToMany(SoccerField, { through: "ImageSoccerField" });
+
+SoccerField.hasMany(SoccerFieldTime);
+SoccerFieldTime.belongsTo(SoccerField);
+
+SoccerField.belongsTo(Image);
+Image.belongsTo(SoccerField);
 
 module.exports = SoccerField;

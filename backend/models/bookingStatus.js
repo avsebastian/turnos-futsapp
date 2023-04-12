@@ -7,10 +7,6 @@ const BookingsStatus = db.define("BookingsStatus", {
     type: DataTypes.INTEGER,
     autoIncrement: true,
   },
-  name: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
   description: DataTypes.STRING,
 });
 

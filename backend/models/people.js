@@ -1,5 +1,6 @@
 const { DataTypes } = require('sequelize');
 const db = require('./index');
+const Image = require("./image");
 
 const People = db.define("People", {
   id: {
@@ -29,5 +30,7 @@ const People = db.define("People", {
     allowNull: false,
   }
 });
+People.belongsTo(Image);
+Image.belongsTo(People);
 
 module.exports = People;
