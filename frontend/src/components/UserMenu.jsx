@@ -30,7 +30,7 @@ export const UserMenu = () => {
       <Button >
       <Space>
         <Button>
-          {`Hola ${user.username} `}<DownOutlined />  
+          {`Hola ${user.name} `}<DownOutlined />  
           </Button>
       </Space>
     </Button>

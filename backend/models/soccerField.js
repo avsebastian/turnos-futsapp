@@ -25,7 +25,7 @@ const SoccerField = db.define("SoccerField", {
 // Agregar canchas predeterminadas
 SoccerField.bulkCreate([
   { id:"1",name: 'futbol5', description: '5 jugadores', type:'futbol5', amountPlayers: '5'},
-  { id:"2",name: 'futbol6', description: '6 jugadores', type:'futbol6', amountPlayers: '6'},
+  { id:"2",name: 'futbol7', description: '7 jugadores', type:'futbol7', amountPlayers: '7'},
   { id:"3",name: 'futbol11', description: '11 jugadores', type:'futbol11', amountPlayers: '11'}
 ])
   .then(() => {
