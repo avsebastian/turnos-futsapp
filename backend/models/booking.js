@@ -2,7 +2,9 @@ const { DataTypes } = require('sequelize');
 const db = require('./index');
 const BookingType = require("./bookingType.js");
 const BookingStatus = require("./bookingStatus.js");
-const BookingDate = require("./bookingDate.js");
+const SoccerField = require("./soccerField.js");
+const Date = require("./date.js");
+
 
 const Bookings = db.define("Bookings", {
   id: {
@@ -14,7 +16,7 @@ const Bookings = db.define("Bookings", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  creation_date: {
+  fecha: {
     type: DataTypes.DATE,
     allowNull: false,
   }
@@ -25,7 +27,10 @@ BookingType.belongsTo(Bookings);
 Bookings.hasMany(BookingStatus);
 BookingStatus.belongsTo(Bookings);
 
-Bookings.hasMany(BookingDate);
-BookingDate.belongsTo(Bookings);
+SoccerField.hasMany(Bookings);
+Bookings.belongsTo(SoccerField);
+
+Date.hasMany(Bookings);
+Bookings.belongsTo(Date);
 
 module.exports = Bookings;

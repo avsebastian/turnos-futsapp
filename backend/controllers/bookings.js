@@ -15,8 +15,8 @@ const getBookingById = async (req, res) => {
 
 const createBooking = async (req, res) => {
   try {
-    await body('name').notEmpty().isAlphanumeric().run(req);
-    await body('descripcion').notEmpty().isAlpha().run(req);
+    await body('fecha').notEmpty().run(req);
+    await body('cod').notEmpty().run(req);
     
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -42,8 +42,8 @@ const deleteBooking = async (req, res) => {
 
 const updateBooking = async (req, res) => {
   try {
-    await body('name').notEmpty().isAlphanumeric().run(req);
-    await body('descripcion').notEmpty().isAlpha().run(req);
+    await body('fecha').notEmpty().run(req);
+    await body('cod').notEmpty().run(req);
     
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
