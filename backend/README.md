@@ -8,7 +8,7 @@ users (usuarios)
 /api/users > GET > ver todos los usuarios <br>
 /api/users/id > GET > mostrar registro por id de usuario<br>
 /api/users/id > DEL > eliminar registro por id del user<br>
-/api/users/userId/bookings/create/ > POST > crear reserva por id de usuario<br>
+/api/users/userId/booking/create/ > POST > crear reserva por id de usuario<br>
 /api/users/userId/bookings/ > GET > mostrar todas las reservas por id de usuario<br>
 
 roles (roles)
@@ -28,6 +28,8 @@ bookings (reservas)
 
 Roles PreCargados
 Admin, Superadmin, User
+Canchas Precargadas
+fut5, fut7, fut11
 
 Login > /api/users/login al ingresar genera un token que le va a permitir ingresar a todas las rutas de la api.<br>
 Registro > /api/users/create al registrar codifica la password.
