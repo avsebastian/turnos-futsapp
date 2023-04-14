@@ -6,16 +6,20 @@ import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { store } from '../store';
 const { useModelState, getModelDispatchers } = store;
 
-const LoginModal = ({ handleClose, isLoginModalOpen }) => {
-
+const LoginModal = ({
+  handleCloseLogin,
+  isLoginModalOpen,
+  handleRegister,
+  isRegisterModalOpen,
+}) => {
   const { login } = getModelDispatchers('authentication');
-  
+
   const [formLogin] = Form.useForm();
 
   const handleOk = () => {
     formLogin.validateFields().then((values) => {
       login(values);
-      handleClose();
+      handleCloseLogin();
       formLogin.resetFields();
     });
   };
@@ -28,7 +32,9 @@ const LoginModal = ({ handleClose, isLoginModalOpen }) => {
 
   const handleRegisterClick = () => {
     formLogin.resetFields();
-    //onRegisterClick();
+    // onRegisterClick();
+    handleCloseLogin();
+    handleRegister();
   };
   return (
     <Modal
@@ -36,12 +42,12 @@ const LoginModal = ({ handleClose, isLoginModalOpen }) => {
       open={isLoginModalOpen}
       onOk={handleOk}
       //onCancel={handleCancel}
-      onCancel={handleClose}
+      onCancel={handleCloseLogin}
       //confirmLoading={loading}
       okText="Enviar"
       cancelText="Registrarse"
       footer={[
-        <Button key="cancel" onClick={handleClose}>
+        <Button key="cancel" onClick={handleRegisterClick}>
           Registrarse
         </Button>,
         <Button

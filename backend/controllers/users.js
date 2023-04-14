@@ -217,9 +217,13 @@ const signup = async (req, res) => {
       { expiresIn: '1d' }
     );
 
+    const { dataValues } = user;
+    delete dataValues.password;
+    
     res.status(201).json({
       message: 'Usuario creado con exito',
       token: token,
+      user: dataValues,
       expiresIn: 86400,
     });
   } catch (error) {

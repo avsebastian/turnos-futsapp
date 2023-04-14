@@ -2,30 +2,45 @@ import React from 'react';
 import { Button, Form, Input, Modal } from 'antd';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 
-const RegisterModal = ({ open, onCancel, onOk, loading, onLoginClick }) => {
+import { store } from '../store';
+const { useModelState, getModelDispatchers } = store;
+
+const RegisterModal = ({
+  handleCloseRegister,
+  isRegisterModalOpen,
+  loading,
+  handleLogin,
+  isLoginModalOpen,
+}) => {
+  const { register } = getModelDispatchers('authentication');
+
   const [formRegister] = Form.useForm();
 
   const handleOk = () => {
     formRegister.validateFields().then((values) => {
-      onOk(values);
+      // onOk(values);
+      register(values);
+      handleCloseRegister();
       formRegister.resetFields();
     });
   };
-  const handleCancel = () => {
-    formRegister.resetFields();
-    onCancel();
-  };
+  // const handleCancel = () => {
+  //   formRegister.resetFields();
+  //   onCancel();
+  // };
 
   const handleLoginClick = () => {
     formRegister.resetFields();
-    onLoginClick();
+    // onLoginClick();
+    handleCloseRegister();
+    handleLogin();
   };
   return (
     <Modal
       title="Registrarse"
-      open={open}
+      open={isRegisterModalOpen}
       onOk={handleOk}
-      onCancel={handleCancel}
+      onCancel={handleCloseRegister}
       confirmLoading={loading}
       okText="Enviar"
       cancelText="Iniciar Sesion"
@@ -52,6 +67,38 @@ const RegisterModal = ({ open, onCancel, onOk, loading, onLoginClick }) => {
         // onFinish={onFinish}
         form={formRegister}
       >
+        <Form.Item
+          name="name"
+          label="Nombre"
+          rules={[
+            {
+              required: true,
+              message: 'Por favor, introduzca su nombre!',
+            },
+          ]}
+        >
+          <Input
+            prefix={<UserOutlined className="site-form-item-icon" />}
+            type="text"
+            placeholder="Nombre"
+          />
+        </Form.Item>
+        <Form.Item
+          name="lastname"
+          label="Apellido"
+          rules={[
+            {
+              required: true,
+              message: 'Por favor, introduzca su apellido!',
+            },
+          ]}
+        >
+          <Input
+            prefix={<UserOutlined className="site-form-item-icon" />}
+            type="text"
+            placeholder="Apellido"
+          />
+        </Form.Item>        
         <Form.Item
           name="email"
           label="Correo Electronico"
