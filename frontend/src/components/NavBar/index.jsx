@@ -23,7 +23,7 @@ function NavBar({ isLoginModalOpen, setIsLoginModalOpen }) {
   const [openMenu, setOpenMenu] = useState(false);
   const [scrollNav, setScrollNav] = useState(false);
 
-  const { user } = useModelState("authentication");
+  const { user, token } = useModelState("authentication");
 
   useEffect(() => {
     window.addEventListener("scroll", changeNav);
@@ -62,6 +62,23 @@ function NavBar({ isLoginModalOpen, setIsLoginModalOpen }) {
             <Sidebar openMenu={openMenu} setOpenMenu={setOpenMenu} />
           </MobileIcon>
           <NavMenu>
+
+            {token 
+              ? <NavItem>
+                <NavLinks
+                  to="reservas"
+                  smooth
+                  duration={500}
+                  spy
+                  exact="true"
+                  offset={-80}
+                  scrollNav={scrollNav}
+                >
+                  Mis Reservas
+                </NavLinks>
+              </NavItem>
+              : null}
+
             <NavItem>
               <NavLinks
                 to="nosotros"
@@ -75,6 +92,7 @@ function NavBar({ isLoginModalOpen, setIsLoginModalOpen }) {
                 Nosotros
               </NavLinks>
             </NavItem>
+
             <NavItem>
               <NavLinks
                 to="canchas"
@@ -88,6 +106,7 @@ function NavBar({ isLoginModalOpen, setIsLoginModalOpen }) {
                 Canchas
               </NavLinks>
             </NavItem>
+
             <NavItem>
               <NavLinks to="/contact-us" scrollNav={scrollNav}>
                 Contact Us
