@@ -4,7 +4,7 @@ import authStorage from '../utils/localStorage';
 import { store } from '../store';
 
 const initialState = {
-  reservas: null,
+  fechas: null,
 };
 
 const model = {
