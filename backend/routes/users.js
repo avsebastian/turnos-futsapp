@@ -20,7 +20,7 @@ userRoutes.post('/create', createUser);
 userRoutes.put('/:userId',authorization,  updateUser);
 userRoutes.delete('/:userId',authorization, deleteUser);
 userRoutes.post('/:userId/booking/create/',authorization, createUserBooking);
-userRoutes.get('/:userId/bookings',authorization, getAllUserBookingsById);
+userRoutes.get('/:userId/bookings', getAllUserBookingsById);
 userRoutes.post('/login', login);
 userRoutes.post('/signup', signup);
 

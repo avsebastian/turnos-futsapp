@@ -118,6 +118,8 @@ const createUserBooking = async (req, res) => {
 
 const getAllUserBookingsById = async (req, res) => {
   try {
+    console.log('req.params.userId', req.params.userId);
+
     const bookings = await userRepository.getAllUserBookingsById(
       req.params.userId
     );

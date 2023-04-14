@@ -83,4 +83,22 @@ export default {
       throw error;
     }
   },
+
+  getAllUserBookingsById: async(userId) => {
+    try {
+      const res = await fetch(`${URL_API}/users/${userId}/bookings`, {mode: 'cors'});
+
+      if(res.ok){
+      const soccerFields = await res.json();
+      
+      return soccerFields.bookings.Bookings;
+      }else{
+        throw res;
+      }
+    } catch (error) {
+      console.log('getAllUserBookingsById error', error.message);
+      throw error;
+    }
+  },
+
 };

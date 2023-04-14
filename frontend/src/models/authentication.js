@@ -139,8 +139,9 @@ const model = {
           error: error.messageError,
         });
       }
-    }
-  }),
+    },
+
+ }),
 };
 
 export default model;
