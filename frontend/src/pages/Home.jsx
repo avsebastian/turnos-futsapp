@@ -9,7 +9,6 @@ import LoginModal from '../components/LoginModal';
 import RegisterModal from '../components/RegisterModal';
 
 export function Home() {
-  const [loading, setLoading] = useState(false);
 
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
@@ -39,7 +38,6 @@ export function Home() {
         <RegisterModal
           handleCloseRegister={handleRegisterModal}
           isRegisterModalOpen={isRegisterModalOpen}
-          loading={loading}
           handleLogin={handleLoginModal}
           isLoginModalOpen={isLoginModalOpen}
         />

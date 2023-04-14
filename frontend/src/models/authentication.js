@@ -40,6 +40,7 @@ const model = {
           user: res.user,
           error: null,
         });
+        return res.message;
       } catch (error) {
         this.setState({
           token: null,
@@ -52,12 +53,13 @@ const model = {
     async register(formData) {
       try {
         const res = await apiServices.registerUser(formData);
-        authStorage.setToken(res.token);
+        authStorage.setToken('token',res.token);
         this.setState({
-          token: null,
+          token: res.token,
           user: res.user,
           error: null,
         });
+        return res.message;
       } catch (error) {
         this.setState({
           token: null,

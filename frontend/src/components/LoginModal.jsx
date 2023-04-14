@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import { Button, Checkbox, Form, Input, Modal } from 'antd';
+import { Button, Checkbox, Form, Input, Modal, message} from 'antd';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 
 import { store } from '../store';
@@ -13,15 +13,21 @@ const LoginModal = ({
   isRegisterModalOpen,
 }) => {
   const { login } = getModelDispatchers('authentication');
+  const [loading, setLoading] = useState(false);
 
   const [formLogin] = Form.useForm();
 
   const handleOk = () => {
-    formLogin.validateFields().then((values) => {
-      login(values);
-      handleCloseLogin();
-      formLogin.resetFields();
-    });
+    
+    setLoading(true);
+    
+    formLogin.validateFields()
+    .then((values) =>  login(values))
+    .then((resp) => { message.info(resp);
+                      handleCloseLogin();
+                      setLoading(false);
+                      formLogin.resetFields(); })
+    .catch(error => message.error(error));
   };
 
   // const handleCancel = () => {
@@ -53,7 +59,7 @@ const LoginModal = ({
         <Button
           key="submit"
           type="primary"
-          //loading={loading}
+          loading={loading}
           onClick={handleOk}
         >
           Enviar

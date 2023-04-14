@@ -37,5 +37,5 @@ db.sync().then(() => {
 })
 
 app.listen(config.SERVER_PORT, "localhost", () => {
-	console.log("Servidor funcionando en puerto", process.env.SERVER_PORT);
+	console.log("Servidor funcionando en puerto", config.SERVER_PORT);
 });

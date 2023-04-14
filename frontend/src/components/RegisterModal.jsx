@@ -1,5 +1,5 @@
-import React from 'react';
-import { Button, Form, Input, Modal } from 'antd';
+import React,{ useState }  from 'react';
+import { Button, Form, Input, Modal, message } from 'antd';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 
 import { store } from '../store';
@@ -8,26 +8,26 @@ const { useModelState, getModelDispatchers } = store;
 const RegisterModal = ({
   handleCloseRegister,
   isRegisterModalOpen,
-  loading,
   handleLogin,
   isLoginModalOpen,
 }) => {
   const { register } = getModelDispatchers('authentication');
+  const [loading, setLoading] = useState(false);
 
   const [formRegister] = Form.useForm();
 
   const handleOk = () => {
-    formRegister.validateFields().then((values) => {
-      // onOk(values);
-      register(values);
-      handleCloseRegister();
-      formRegister.resetFields();
-    });
+    setLoading(true);
+
+    formRegister.validateFields()
+    .then((values) => register(values))
+    .then((resp) => { message.info(resp);
+                      handleCloseRegister();
+                      setLoading(false);
+                      formRegister.resetFields();
+          })
+    .catch(error => message.error(error)); 
   };
-  // const handleCancel = () => {
-  //   formRegister.resetFields();
-  //   onCancel();
-  // };
 
   const handleLoginClick = () => {
     formRegister.resetFields();
@@ -41,7 +41,7 @@ const RegisterModal = ({
       open={isRegisterModalOpen}
       onOk={handleOk}
       onCancel={handleCloseRegister}
-      confirmLoading={loading}
+      //confirmLoading={loading}
       okText="Enviar"
       cancelText="Iniciar Sesion"
       footer={[
