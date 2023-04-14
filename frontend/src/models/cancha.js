@@ -23,8 +23,7 @@ const model = {
     
     async getAllSoccerFields(){
     
-      const canchasResp = await apiServices.getAllSoccerFields();
-      
+      const canchasResp = await apiServices.getAllSoccerFields();      
       for (var i = 0; i < imgCanchas.length; i++) {
         canchasResp[i] = { ...canchasResp[i], img: imgCanchas[i] };
       }

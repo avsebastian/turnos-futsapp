@@ -68,14 +68,13 @@ export default {
 
   getAllSoccerFields: async () => {
     try {
-      
-      const res =  await fetch(`${URL_API}/soccerfields`,{mode: 'cors'});
+      const res = await fetch(`${URL_API}/soccerfields`, { mode: 'cors' });
 
-      if(res.ok){
-      const soccerFields = await res.json();
-      
-      return soccerFields.response;
-      }else{
+      if (res.ok) {
+        const soccerFields = await res.json();
+
+        return soccerFields.response;
+      } else {
         throw res;
       }
     } catch (error) {
@@ -84,15 +83,17 @@ export default {
     }
   },
 
-  getAllUserBookingsById: async(userId) => {
+  getAllUserBookingsById: async (userId) => {
     try {
-      const res = await fetch(`${URL_API}/users/${userId}/bookings`, {mode: 'cors'});
+      const res = await fetch(`${URL_API}/users/${userId}/bookings`, {
+        mode: 'cors',
+      });
 
-      if(res.ok){
-      const soccerFields = await res.json();
-      
-      return soccerFields.bookings.Bookings;
-      }else{
+      if (res.ok) {
+        const soccerFields = await res.json();
+
+        return soccerFields.bookings.Bookings;
+      } else {
         throw res;
       }
     } catch (error) {
@@ -101,4 +102,45 @@ export default {
     }
   },
 
+  getAllDatesByCanchaId: async (canchaId) => {
+    try {
+      const res = await fetch(`${URL_API}/availableTimes/${canchaId}`, {
+        mode: 'cors',
+      });
+
+      if (res.ok) {
+        const dates = await res.json();
+
+        return dates.availableTimes;
+      } else {
+        throw res;
+      }
+    } catch (error) {
+      console.log('getAllDatesByCanchaId error', error.message);
+      throw error;
+    }
+  },
+
+  getAllTimesByCanchaId: async (fecha) => {
+    try {      
+      const res = await fetch(`${URL_API}/availableTimes/1`, {
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(fecha),
+      });
+      console.log(res)
+      if (res.ok) {
+        const availableTimes = await res.json();
+    
+        return availableTimes.availableTimes;
+      } else {
+        throw res;
+      }
+    } catch (error) {
+      console.log('getAllTimesByCanchaId error', error.message);
+      throw error;
+    }
+  },
 };
