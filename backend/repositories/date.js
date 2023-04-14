@@ -6,4 +6,13 @@ const getAllDates = async () => {
   return dates;
 };
 
-module.exports = { getAllDates };
+const createDate = async (dateData) => {
+  try {
+    const date = await Date.create(dateData);
+
+    return date;
+  } catch (error) {
+    return error;
+  }
+};
+module.exports = { getAllDates, createDate };

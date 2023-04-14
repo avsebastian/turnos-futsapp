@@ -2,7 +2,7 @@ const userRepository = require('../repositories/users.js');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { body, validationResult } = require('express-validator');
-const {sendMail} = require("../services/mail")
+const { sendMail } = require('../services/mail');
 
 const getAllUsers = async (req, res) => {
   const users = await userRepository.getAllUsers();
@@ -22,14 +22,13 @@ const createUser = async (req, res) => {
     await body('email').isEmail().run(req);
     await body('name').notEmpty().isAlphanumeric().run(req);
     await body('password').notEmpty().isLength({ min: 6 }).run(req);
-    
+
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
     const isAlreadyAdded = await userRepository.getUserByEmail(email);
 
-    
     //const user = await userRepository.createUser(req.body);
 
     if (isAlreadyAdded) {
@@ -37,9 +36,8 @@ const createUser = async (req, res) => {
         status: 'FAILED',
         message: `Ya existe Usuario con el email '${email}'`,
       });
-    }
-    else{
-      sendMail(email,password,name);
+    } else {
+      sendMail(email, password, name);
     }
 
     const hash = await bcrypt.hash(password, 10);
@@ -48,7 +46,6 @@ const createUser = async (req, res) => {
       ...req.body,
       password: hash,
     });
-    
 
     const token = jwt.sign(
       { userId: user.id, name: user.name },
@@ -61,9 +58,8 @@ const createUser = async (req, res) => {
       token: token,
       expiresIn: 86400,
     });
-    
   } catch (error) {
-    console.log('error',error);
+    console.log('error', error);
     res.status(500).json({
       error: error,
     });
@@ -85,7 +81,7 @@ const updateUser = async (req, res) => {
     await body('email').isEmail().run(req);
     await body('name').notEmpty().isAlphanumeric().run(req);
     await body('password').notEmpty().isLength({ min: 6 }).run(req);
-    
+
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
@@ -103,7 +99,7 @@ const createUserBooking = async (req, res) => {
   try {
     await body('name').notEmpty().isAlphanumeric().run(req);
     await body('description').isString().run(req);
-    
+
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
@@ -125,7 +121,9 @@ const getAllUserBookingsById = async (req, res) => {
     const bookings = await userRepository.getAllUserBookingsById(
       req.params.userId
     );
-
+    
+    delete bookings.dataValues.password;
+    
     res.json({ bookings });
   } catch (error) {
     res.status(500).json({ error });
@@ -147,19 +145,27 @@ const login = async (req, res) => {
     const user = await userRepository.getUserByEmail(email);
 
     if (!user) {
-      return res.status(401).json({ message: 'Fallo la autenticacion: Usuario no existe.' });
+      return res
+        .status(401)
+        .json({ message: 'Fallo la autenticacion: Usuario no existe.' });
     }
 
     const { dataValues } = user;
-        
+
     const passwordIsValid = await bcrypt.compare(password, dataValues.password);
 
     if (!passwordIsValid) {
-      return res.status(401).json({ message: 'Fallo la autenticacion: error en contraseña.' });
+      return res
+        .status(401)
+        .json({ message: 'Fallo la autenticacion: error en contraseña.' });
     }
 
     const token = jwt.sign(
-      { userId: dataValues.id, name: dataValues.name, lastname: dataValues.lastname },
+      {
+        userId: dataValues.id,
+        name: dataValues.name,
+        lastname: dataValues.lastname,
+      },
       process.env.JWT_KEY,
       { expiresIn: '1d' }
     );
@@ -167,16 +173,14 @@ const login = async (req, res) => {
     //Delete propertie 'password' of result User.
     delete dataValues.password;
 
-
     res.status(200).json({
       message: 'Autenticacion exitosa',
       token: token,
       user: dataValues,
       expiresIn: 86400,
     });
-
   } catch (error) {
-    console.log('ERROR', error.message)
+    console.log('ERROR', error.message);
     res.status(401).json({ message: 'Ingreso no autorizado' });
   }
 };
@@ -219,7 +223,7 @@ const signup = async (req, res) => {
 
     const { dataValues } = user;
     delete dataValues.password;
-    
+
     res.status(201).json({
       message: 'Usuario creado con exito',
       token: token,
@@ -227,7 +231,7 @@ const signup = async (req, res) => {
       expiresIn: 86400,
     });
   } catch (error) {
-    console.log('error',error.message);
+    console.log('error', error.message);
     res.status(500).json({
       error: error,
     });
