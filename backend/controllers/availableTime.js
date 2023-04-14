@@ -12,7 +12,7 @@ const getAllAvailableTimes = async (req, res) => {
 const getAllAvailableTimesBySoccerField = async (req, res) => {
   try {
     const soccerFieldId = req.params.soccerFieldId;
-    const fecha = req.query.fecha;
+    const fecha = req.body.fecha;
     let availableTimes;
     if (fecha) {
       availableTimes =
