@@ -52,7 +52,7 @@ Date.createInsertarHorarioDisponibleProcedure = function () {
     WHILE dia <= ultimo_dia DO
         SET fecha = CONCAT(anno,'-',mes,'-',dia);
         
-        INSERT INTO availabletimes (SoccerFieldId, DateId, date, available)
+        INSERT INTO AvailableTimes (SoccerFieldId, DateId, date, available)
         VALUES (cancha_id, horario_id, fecha, true);
         
         SET dia = dia + 1;
@@ -76,7 +76,7 @@ Date.createInsertarHorarioTrigger = function () {
     .query(
       `
   CREATE TRIGGER trg_insertar_horario
-  AFTER INSERT ON dates
+  AFTER INSERT ON Dates
   FOR EACH ROW
   BEGIN
       DECLARE mes INT;

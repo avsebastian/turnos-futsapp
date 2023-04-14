@@ -18,6 +18,6 @@ apiRoutes.use('/images', authorization, imagesRoutes);
 apiRoutes.use('/peoples', authorization, peoplesRoutes);
 apiRoutes.use('/soccerfields', soccerfieldsRoutes);
 apiRoutes.use('/availableTimes', availableTimesRoutes);
-apiRoutes.use('/dates', authorization, datesRoutes);
+apiRoutes.use('/dates', datesRoutes);
 
 module.exports = apiRoutes;
